@@ -1,0 +1,47 @@
+<div ng-controller="MainController">
+	<div>Start Page</div>
+	<a href="#/view1">View 1</a>
+	
+
+    <h1>{{message}}</h1>
+
+    <div>{{error}}</div>
+
+    {{countdown}}
+    <form name="searchUser" ng-submit="search(username)">
+      <input type="search" placeholder="Photo Gallery to find" ng-model="username" />
+      <input type="submit" value="Search" />
+
+    </form>
+	<img ng-src="http://www.gravatar.com/avatar/{{user.gravatar_id}}" title="{{user.name}}" /> Order:
+	  <select ng-model="repoSortOrder">
+		<option value="+event">Event</option>
+		<option value="+location">Location</option>
+		<option value="+date">Date</option>
+	  </select>
+
+	<table class="gallery">
+	  <thead>
+		<tr>
+		  <th>Activity</th>
+		  <th>Location</th>
+		  <th>Date</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		<tr ng-repeat="repo in repos | filter:username | orderBy:repoSortOrder">
+		  <td>{{repo.event}}</td>
+		  <td>{{repo.location}}</td>
+		  <td>{{repo.date}}</td>
+		  <td>
+				<div class="picContainer" ng-repeat="pics in repo.picturesObj" ng-if="$index==0">
+					<!-- <a href="#/view1" ng-click="indexSelected=repo.id" ><img ng-src="{{pics.url}}"/></a>  -->
+					<!-- <a href="#/" ng-click="indexSelected=$index" ><img ng-src="{{pics.url}}"/></a> -->
+					<a href="#/gallery/{{repo.id}}" ng-click="selectedGallery(repo.id);" ><img ng-src="{{pics.url}}"/></a> 
+				</div>
+		  </td>
+		</tr>
+	  </tbody>
+	</table>
+    <a href="#/view1">View 1</a>
+</div>

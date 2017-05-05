@@ -1,0 +1,13 @@
+bodyXYZ{
+    opacity: 0.6;
+    background-image: url('/assets/img/jayuya.jpg');
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+}
+.gallery img{width:200px}
+
+.gallery tbody td{border-top:1px solid black;margin:3px;}
+.gallery tbody td.galleryLabel{   vertical-align: top;}
+
+.gallery  div.picContainer{float:left; margin:3px}
+.galleryList{float:left; border:3px solid #003366;margin: 3px;}

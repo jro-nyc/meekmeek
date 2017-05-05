@@ -1,0 +1,53 @@
+<!-- userDetails.html file included above  -->
+<div id="userDetails">
+  <h2>{{user.name}}</h2>
+  <img ng-src="http://www.gravatar.com/avatar/{{user.gravatar_id}}" title="{{user.name}}" /> Order:
+  <select ng-model="repoSortOrder">
+    <option value="+event">Event</option>
+    <option value="+location">Location</option>
+    <option value="+date">Date</option>
+  </select>
+</div>
+</div>
+<!--
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>ID</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="repo in repos | orderBy:repoSortOrder">
+      <td>{{repo.name}}</td>
+      <td>{{repo.id | number:0}}</td>
+      <td>{{repo.info.location}}</td>
+      <td><input type="submit" value="Search" ng-click="showImages" /></td>
+    </tr>
+  </tbody>
+</table>
+-->
+<table class="gallery">
+  <thead>
+    <tr>
+      <th>Activity</th>
+      <th>Location</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="repo in repos | filter:username | orderBy:repoSortOrder">
+      <td>{{repo.event}}</td>
+      <td>{{repo.location}}</td>
+      <td>{{repo.date}}</td>
+      <td>
+			<!-- <div class="picContainer" ng-repeat="pics in repo.picturesObj | filter:username"> -->
+			<div class="picContainer" ng-repeat="pics in repo.picturesObj">
+				<div>{{pics.name}}</div>
+				<a href="" ><img ng-src="{{pics.url}}" ng-click="popImage($event)" /></a> 
+			</div>
+	  </td>
+    </tr>
+  </tbody>
+</table>

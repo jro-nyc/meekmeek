@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Mobile param tester</title>
+
+	<!-- <script src="/assets/js/customer.placement.2domain.js"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<!-- <script src="/assets/js/customer.placement.js"></script> -->
+	<style>
+	.bold{font-weight:bold;}
+	.change{color:#cc0000;}
+	</style>
+</head>
+
+<body>
+<!-- Placeholder for views-->
+
+	<div id="params">
+	<h2>The object "navigator.connection" does not exist</h2>
+	</div>
+	
+</body>
+<script>
+var initialize=true,num=1;;
+function opCheckConnection(){
+	var area=document.getElementById("params"), connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+	if(typeof(connection)!=="undefined" && area){
+		var list='', i, len, n,tp;
+		for(n in connection){
+			tp=typeof(connection[n]);
+			if(tp!=="function")list+='"<span class="bold">'+n+'</span>" has type "'+tp+'" and a value of "<span class="bold">'+connection[n]+'</span>"<br/>';
+			else list+='"<span class="bold">'+n+'</span>" is a "'+tp+'"<br/>';
+		}
+		document.title="TMobile param tester,#"+num;
+		num++;
+		if(initialize){
+			initialize=false;
+			connection.addEventListener('typechange', opCheckConnection);
+			area.innerHTML='<h2>The object "navigator.connection" has the following values:</h2>'+list;
+		} 
+		else{
+			area.innerHTML='<h1 class="change">We have had a typechange in the connection</h1><h2>The object "navigator.connection" has the following values:</h2>'+list;
+		}
+	}
+}
+opCheckConnection();
+
+</script>
+</html>
+

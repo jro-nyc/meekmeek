@@ -1,0 +1,53 @@
+<html ng-app="myPicturesViewer" class="ng-scope">
+<head>
+	<style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],
+	.ng-cloak,.x-ng-cloak,
+	.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}
+	.ng-animate-shim{visibility:hidden;}
+	.ng-anchor{position:absolute;}
+	</style>
+	<title ng-bind-html="title " class="ng-binding"></title>
+
+	<script src="/assets/js/customer.placement.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+
+<body>
+<!-- Placeholder for views-->
+
+	<!-- ngView:  --><div ng-view="" class="ng-scope"><div ng-controller="MainController" class="ng-scope">
+	<a href="/notSPA/home.html">Back to the Start Page</a>
+
+	<div>Test Funnel (DOM change funnel)</div>
+	<div><a href="/notSPA/DOMfunnelPage1.html">Funnel Page 1</a></div>
+	<div>Funnel Page 2</div>
+	<div><a href="/notSPA/DOMfunnelPage3.html">Funnel Page 3</a></div>
+    <h2 class="ng-binding">Jaime Audio gallery, showing first 3 entries</h2>
+    <h1 class="ng-binding">Jaime Audio gallery mod #1, showing first 3 entries</h1>
+    <h3>Just text, no scope variables in here</h3>	
+
+    <div class="ng-binding"></div>
+	
+	<form name="searchUser" ng-submit="audio()" class="ng-pristine ng-valid">
+	  <input type="submit" value="Gallery" ng-click="audioGallerySelected=true">
+	</form>
+	<table class="gallery ng-hide" ng-show="audioGallerySelected">
+	  <thead>
+		<tr>
+		  <th>ID</th>
+		  <th>Name</th>
+		  <th>Date</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		<!-- ngRepeat: audio in audioInfo -->
+	  </tbody>
+	</table>
+</div></div>
+	
+
+
+</body></html>

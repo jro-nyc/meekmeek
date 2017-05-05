@@ -1,0 +1,176 @@
+<html ng-app="myPicturesViewer" class="ng-scope">
+<head>
+	<style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],
+	.ng-cloak,.x-ng-cloak,
+	.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}
+	.ng-animate-shim{visibility:hidden;}
+	.ng-anchor{position:absolute;}
+	</style>
+	<title ng-bind-html="title " class="ng-binding"></title>
+
+	<script src="/assets/js/customer.placement.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+
+<body>
+<!-- Placeholder for views-->
+<div ng-view="" class="ng-scope">
+	<div ng-controller="MainController" class="ng-scope ng-binding">
+		<div>Start Page</div>
+		<div><a href="/notSPA/audio.html">Audio</a></div>
+		<div><a href="/notSPA/gallery.html">Gallery</a></div>
+		<div><a href="/notSPA/DOMfunnelStart.html">Test Funnel (DOM change funnel)</a></div>
+		<div><a href="/notSPA/cors.html">CORS test</a></div>
+		
+
+		<h1 class="ng-binding">Jaime picture gallery</h1>
+
+		<div class="ng-binding"></div>
+		0
+		<div>
+			<form name="searchUser" ng-submit="search(username)" class="ng-pristine ng-valid">
+			  <input type="search" placeholder="Photo Gallery to find" ng-model="username" class="ng-pristine ng-untouched ng-valid ng-empty">
+			  <input type="submit" value="Search">
+
+			</form>
+			<img title=""> Order:
+			<select ng-model="repoSortOrder" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+				<option value="+event">Event</option>
+				<option value="+location">Location</option>
+				<option value="+date">Date</option>
+			</select>
+		</div>		
+
+		<div>
+			<div class="galleryList ng-scope" ng-repeat="repo in repos | filter:username | orderBy:repoSortOrder">
+				<table class="gallery">	  
+				  <tbody>
+					<tr>
+					  <td>
+							<div class="ng-binding">Riding a Carousel</div>
+							<div class="ng-binding">Armstrong Playground</div>
+							<div class="ng-binding">2014.02.16</div>
+							<!-- ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><div class="picContainer ng-scope" ng-repeat="pics in repo.picturesObj" ng-if="$index==0">
+								<a href="/notSPA/gallery/8" ng-click="selectedGallery(repo.id);"><img ng-src="/assets/img/Playground/Feb.16.2014/20140216_175625.jpg" src="/assets/img/Playground/Feb.16.2014/20140216_175625.jpg"></a> 
+							</div><!-- end ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj -->
+					  </td>
+					</tr>
+				  </tbody>
+				</table>
+			</div><!-- end ngRepeat: repo in repos | filter:username | orderBy:repoSortOrder --><div class="galleryList ng-scope" ng-repeat="repo in repos | filter:username | orderBy:repoSortOrder">
+				<table class="gallery">	  
+				  <tbody>
+					<tr>
+					  <td>
+							<div class="ng-binding">Snow or Ice</div>
+							<div class="ng-binding">Casa de Jaime</div>
+							<div class="ng-binding">2013.12.06</div>
+							<!-- ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><div class="picContainer ng-scope" ng-repeat="pics in repo.picturesObj" ng-if="$index==0">
+								<a href="/notSPA/gallery/4" ng-click="selectedGallery(repo.id);"><img ng-src="/assets/img/SnowIce/Dec.06.2013/20131206_082425.jpg" src="/assets/img/SnowIce/Dec.06.2013/20131206_082425.jpg"></a> 
+							</div><!-- end ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj -->
+					  </td>
+					</tr>
+				  </tbody>
+				</table>
+			</div><!-- end ngRepeat: repo in repos | filter:username | orderBy:repoSortOrder --><div class="galleryList ng-scope" ng-repeat="repo in repos | filter:username | orderBy:repoSortOrder">
+				<table class="gallery">	  
+				  <tbody>
+					<tr>
+					  <td>
+							<div class="ng-binding">Sporting</div>
+							<div class="ng-binding">Dallas Stars vs. Carolina Hurricanes</div>
+							<div class="ng-binding">2014.02.27</div>
+							<!-- ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><div class="picContainer ng-scope" ng-repeat="pics in repo.picturesObj" ng-if="$index==0">
+								<a href="/notSPA/gallery/3" ng-click="selectedGallery(repo.id);"><img ng-src="/assets/img/Sporting/Feb.27.2014/20140227_185048.jpg" src="/assets/img/Sporting/Feb.27.2014/20140227_185048.jpg"></a> 
+							</div><!-- end ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj -->
+					  </td>
+					</tr>
+				  </tbody>
+				</table>
+			</div><!-- end ngRepeat: repo in repos | filter:username | orderBy:repoSortOrder --><div class="galleryList ng-scope" ng-repeat="repo in repos | filter:username | orderBy:repoSortOrder">
+				<table class="gallery">	  
+				  <tbody>
+					<tr>
+					  <td>
+							<div class="ng-binding">Birthday Party, Sebi</div>
+							<div class="ng-binding">Flight Museum</div>
+							<div class="ng-binding">2014.01.11</div>
+							<!-- ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><div class="picContainer ng-scope" ng-repeat="pics in repo.picturesObj" ng-if="$index==0">
+								<a href="/notSPA/gallery/6" ng-click="selectedGallery(repo.id);"><img ng-src="/assets/img/BirthdayParty/Jan.11.2014/20140111_101842.jpg" src="/assets/img/BirthdayParty/Jan.11.2014/20140111_101842.jpg"></a> 
+							</div><!-- end ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj -->
+					  </td>
+					</tr>
+				  </tbody>
+				</table>
+			</div><!-- end ngRepeat: repo in repos | filter:username | orderBy:repoSortOrder --><div class="galleryList ng-scope" ng-repeat="repo in repos | filter:username | orderBy:repoSortOrder">
+				<table class="gallery">	  
+				  <tbody>
+					<tr>
+					  <td>
+							<div class="ng-binding">Birthday Party, Samuel</div>
+							<div class="ng-binding">Kuby's restaurant</div>
+							<div class="ng-binding">2014.02.14</div>
+							<!-- ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><div class="picContainer ng-scope" ng-repeat="pics in repo.picturesObj" ng-if="$index==0">
+								<a href="/notSPA/gallery/7" ng-click="selectedGallery(repo.id);"><img ng-src="/assets/img/Kubys/Feb.14.2014/20140214_184653.jpg" src="/assets/img/Kubys/Feb.14.2014/20140214_184653.jpg"></a> 
+							</div><!-- end ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj -->
+					  </td>
+					</tr>
+				  </tbody>
+				</table>
+			</div><!-- end ngRepeat: repo in repos | filter:username | orderBy:repoSortOrder --><div class="galleryList ng-scope" ng-repeat="repo in repos | filter:username | orderBy:repoSortOrder">
+				<table class="gallery">	  
+				  <tbody>
+					<tr>
+					  <td>
+							<div class="ng-binding">Playing</div>
+							<div class="ng-binding">Lakeside Park</div>
+							<div class="ng-binding">2015.04.13</div>
+							<!-- ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><div class="picContainer ng-scope" ng-repeat="pics in repo.picturesObj" ng-if="$index==0">
+								<a href="/notSPA/gallery/1" ng-click="selectedGallery(repo.id);"><img ng-src="/assets/img/lakesidePark/April.13.2015/20150411_132910.jpg" src="/assets/img/lakesidePark/April.13.2015/20150411_132910.jpg"></a> 
+							</div><!-- end ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj -->
+					  </td>
+					</tr>
+				  </tbody>
+				</table>
+			</div><!-- end ngRepeat: repo in repos | filter:username | orderBy:repoSortOrder --><div class="galleryList ng-scope" ng-repeat="repo in repos | filter:username | orderBy:repoSortOrder">
+				<table class="gallery">	  
+				  <tbody>
+					<tr>
+					  <td>
+							<div class="ng-binding">Culture</div>
+							<div class="ng-binding">Perot Museum</div>
+							<div class="ng-binding">2015.04.12</div>
+							<!-- ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><div class="picContainer ng-scope" ng-repeat="pics in repo.picturesObj" ng-if="$index==0">
+								<a href="/notSPA/gallery/2" ng-click="selectedGallery(repo.id);"><img ng-src="/assets/img/Perot/April.12.2015/20150412_122252.jpg" src="/assets/img/Perot/April.12.2015/20150412_122252.jpg"></a> 
+							</div><!-- end ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj --><!-- ngIf: $index==0 --><!-- end ngRepeat: pics in repo.picturesObj -->
+					  </td>
+					</tr>
+				  </tbody>
+				</table>
+			</div><!-- end ngRepeat: repo in repos | filter:username | orderBy:repoSortOrder --><div class="galleryList ng-scope" ng-repeat="repo in repos | filter:username | orderBy:repoSortOrder">
+				<table class="gallery">	  
+				  <tbody>
+					<tr>
+					  <td>
+							<div class="ng-binding">Snow or Ice</div>
+							<div class="ng-binding">The 'hood</div>
+							<div class="ng-binding">2014.02.06</div>
+							
+							<div class="picContainer ng-scope" ng-repeat="pics in repo.picturesObj" ng-if="$index==0">
+								<a href="/notSPA/gallery/5" ng-click="selectedGallery(repo.id);"><img ng-src="/assets/img/SnowIce/Feb.06.2014/20140206_083211.jpg" src="/assets/img/SnowIce/Feb.06.2014/20140206_083211.jpg"></a> 
+							</div>
+					  </td>
+					</tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+
+</body></html>

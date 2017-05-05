@@ -1,0 +1,42 @@
+<div ng-controller="MainController">
+	<a href="#/">Back to the Master Gallery</a>
+	<div>View 1</div>
+	<a href="#/view2">View 2</a>
+	
+    <h1>{{audioMessage}}</h1>
+
+    <div>{{error}}</div>
+
+    <div id="jrTest"></div>
+	
+	<form name="searchUser" ng-submit="audio()">
+	  <input type="submit" value="Gallery" ng-click="audioGallerySelected=true" />
+	</form>
+	<table class="gallery" ng-show="audioGallerySelected">
+	  <thead>
+		<tr>
+		  <th>ID</th>
+		  <th>Name</th>
+		  <th>Date</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		<tr ng-repeat="audio in audioInfo">
+		  <td class="galleryLabel">{{audio.id}}</td>
+		  <td class="galleryLabel">{{audio.name}}</td>
+		  <td class="galleryLabel">{{audio.date}}</td>
+		  <td>
+			<audio controls="controls" preload="auto">
+				<source src="{{audio.url}}" type="audio/wav{{isNotChrome}}" />
+				<source src="/assets/media/emw_229.ogg" type="audio/ogg" />
+			</audio>
+		  </td>
+		</tr>
+	  </tbody>
+	</table>
+	<div>
+		<blockquote class="twitter-video" data-lang="en"><p lang="en" dir="ltr">There can never be enough of these. <a href="https://t.co/iUSPvtzYGD">pic.twitter.com/iUSPvtzYGD</a></p>&mdash; Paul Joseph Watson (@PrisonPlanet) <a href="https://twitter.com/PrisonPlanet/status/785444620226400256">October 10, 2016</a></blockquote>
+		<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+		<script type="text/javascript" src="/assets/js/hook.directive.js"></script>
+	</div>
+	</div>

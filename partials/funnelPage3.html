@@ -1,0 +1,37 @@
+<div ng-controller="MainController">
+	<a href="#/">Back to the Master Gallery</a>
+
+	<div><a href="#/testFunnel">Back to Test Funnel (DOM change funnel)</a></div>
+	<div><a href="#/DOMfunnelPage1">Funnel Page 1</a></div>
+	<div><a href="#/DOMfunnelPage2">Funnel Page 2</a></div>
+	<div>Funnel Page 3</div>	
+    <h1>{{audioMessage}}, showing entries 7 to end</h1>
+
+    <div>{{error}}</div>
+	
+	<form name="searchUser" ng-submit="audio()">
+	  <input type="submit" value="Gallery" ng-click="audioGallerySelected=true" />
+	</form>
+	<table class="gallery" ng-show="audioGallerySelected">
+	  <thead>
+		<tr>
+		  <th>ID</th>
+		  <th>Name</th>
+		  <th>Date</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		<tr ng-repeat="audio in audioInfo" ng-if="$index>6">
+		  <td class="galleryLabel">{{audio.id}}</td>
+		  <td class="galleryLabel">{{audio.name}}</td>
+		  <td class="galleryLabel">{{audio.date}}</td>
+		  <td>
+			<audio controls="controls" preload="auto">
+				<source src="{{audio.url}}" type="audio/wav{{isNotChrome}}" />
+				<source src="/assets/media/emw_229.ogg" type="audio/ogg" />
+			</audio>
+		  </td>
+		</tr>
+	  </tbody>
+	</table>
+</div>

@@ -1,0 +1,57 @@
+<html ng-app="myPicturesViewer" class="ng-scope">
+<head>
+	<style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],
+	.ng-cloak,.x-ng-cloak,
+	.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}
+	.ng-animate-shim{visibility:hidden;}
+	.ng-anchor{position:absolute;}
+	</style>
+	<title ng-bind-html="title " class="ng-binding"></title>
+
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-MXWFSK');</script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+
+<body>
+<!-- Placeholder for views-->
+
+	<!-- ngView:  --><div ng-view="" class="ng-scope"><div ng-controller="MainController" class="ng-scope">
+	<H2>GOOGLE TAG MANAGER (gtm) TEST FUNNEL</H2>
+	<a href="/GTM/home.html">Back to the Start Page</a>
+
+	<div>Test Funnel (DOM change funnel)</div>
+	<div>Funnel Page 1</div>
+	<div><a href="/GTM/DOMfunnelPage2.html">Funnel Page 2</a></div>
+	<div><a href="/GTM/DOMfunnelPage3.html">Funnel Page 3</a></div>
+    <h2 class="ng-binding">Jaime Audio gallery, showing first 3 entries</h2>
+    <h1 class="ng-binding">Jaime Audio gallery mod #1, showing first 3 entries</h1>
+    <h3>Just text, no scope variables in here</h3>	
+
+    <div class="ng-binding"></div>
+	
+	<form name="searchUser" ng-submit="audio()" class="ng-pristine ng-valid">
+	  <input type="submit" value="Gallery" ng-click="audioGallerySelected=true">
+	</form>
+	<table class="gallery ng-hide" ng-show="audioGallerySelected">
+	  <thead>
+		<tr>
+		  <th>ID</th>
+		  <th>Name</th>
+		  <th>Date</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		<!-- ngRepeat: audio in audioInfo -->
+	  </tbody>
+	</table>
+</div></div>
+	
+
+</body></html>

@@ -1,0 +1,135 @@
+<html ng-app="myPicturesViewer" class="ng-scope">
+<head>
+	<style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],
+	.ng-cloak,.x-ng-cloak,
+	.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}
+	.ng-animate-shim{visibility:hidden;}
+	.ng-anchor{position:absolute;}
+	</style>
+	<title ng-bind-html="title " class="ng-binding"></title>
+
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-MXWFSK');</script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+
+<body>
+<!-- Placeholder for views-->
+
+	<!-- ngView:  --><div ng-view="" class="ng-scope"><div ng-controller="MainController" class="ng-scope">
+	<H2>GOOGLE TAG MANAGER (gtm) TEST FUNNEL</H2>
+	<div>Cors Page</div>
+
+	<div><a href="/GTM/home.html">HOME</a></div>
+	
+	<div>
+		<div id="firstArea">This is the Control for the first area</div>
+		<div id="secondArea">This is the Control for the second area</div>
+		<div id="thirdArea">This is challenger /GTM3</div>
+	</div>
+	<div>
+		<div class="galleryList">
+			<table class="gallery">	  
+			  <tbody>
+				<tr>
+				  <td>
+						<div>Sports</div>
+						<div>Met Life Stadium</div>
+						<div>06 December 2015</div>
+						<div class="picContainer">
+							<img src="/assets/img/cors/Wachen_Missed_Giants_OT_fieldGoal.JPG">
+						</div>
+				  </td>
+				</tr>
+				<tr>
+				  <td>
+						<div>Vacation</div>
+						<div>Jayuya</div>
+						<div>02 Feb 2009</div>
+						<div class="picContainer">
+							<img src="/assets/img/cors/jayuya.jpg">
+						</div>
+				  </td>
+				</tr>
+			  </tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<script class="ng-scope"> 
+
+$optXYZ={
+	myData:{},
+	getAJAX:function(pUrl, pCallback) {
+		var xmlhttp;
+		// create the request
+		xmlhttp = window.XMLHttpRequest?new XMLHttpRequest(): new ActiveXObject("Microsoft.XMLHTTP");
+		// callback to update specified div
+		xmlhttp.onreadystatechange = function () {
+			if (xmlhttp.readyState == 4) {
+				// alert ("x updating: " + pDivId + "\nURL: "+pUrl+"\nstatus: " + xmlhttp.status);
+				$optXYZ.myData = JSON.parse(xmlhttp.responseText);
+				if(typeof(pCallback)==="function")pCallback($optXYZ.myData);
+			}
+		}
+		// submit request
+		xmlhttp.open("get", pUrl);
+		xmlhttp.send(null);
+	},
+	evaluateData:function(obj){
+		switch(typeof(obj.selector)){
+			case 'object':
+				break;
+			case 'string':
+				if(typeof(obj.content)==="string"){
+					jQuery(obj.selector).html(obj.content)
+				}
+				break;
+			default:
+		}
+		optimost.SC(obj.ckname, obj.ckval, obj.time, optimost.SLD() );
+	},
+	myQs:''
+}
+optimost.I();
+for (var n in optimost.C)if (n.substring(0, 2) == "op") 
+	$optXYZ.myQs += ($optXYZ.myQs.length &gt; 0 ? "&amp;" : "?") + n + "=" + escape(optimost.C[n]);
+$optXYZ.getAJAX('http://by.marketinghub.hp.com/trial/1649/p/corsexperiment-txt/23/content.txt'+$optXYZ.myQs, $optXYZ.evaluateData);
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+	
+
+<script>
+	optimost.on("angular:locationChange", function(ev, data) {
+            console.log("!!Got locationChange event", data);
+	});
+</script>
+
+
+</body></html>
