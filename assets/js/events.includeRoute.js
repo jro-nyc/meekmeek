@@ -124,6 +124,7 @@
 	
     $scope.username = window.opUserName;//1 Feb
     $scope.message = "Jaime picture gallery";
+	$scope.googleGraphs = "Google Graphs test area";
     $scope.audioMessage = "Jaime Audio gallery";
     $scope.audioMessage1 = "Jaime Audio gallery mod #1";
     $scope.audioMessage2 = "Jaime Audio gallery mod #2";
@@ -277,6 +278,11 @@
 					controller:'MainController',
 					templateUrl: 'partials/ChoiceHotels/GuestData.html'
 				})	
+			.when("/Graphs",
+				{
+					controller:'MainController',
+					templateUrl: 'partials/Graphs.html'
+				})					
 			.when("/emw",
 				{
 					controller:'MainController',
