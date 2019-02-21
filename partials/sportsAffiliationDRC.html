@@ -1,0 +1,15 @@
+<div ng-controller="sportsAffiliation">
+	<a href="#/">Back to the Master Gallery</a>
+	
+	<div>Sports Teams per Airport location</div>
+	
+	<my-progress-bar></my-progress-bar>
+
+	<form name="airportToTeamsSearch" ng-submit="airportSearchV2(airport)">
+	  <input type="text" placeholder="Airport to Sports" ng-maxlength="3" ng-model="airport" ng-change="toUC()" />
+	  <input type="submit" value="Search" />
+	</form>	
+		
+	<my-location-dropdown></my-location-dropdown>
+
+</div>

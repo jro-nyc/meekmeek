@@ -1,0 +1,86 @@
+[
+	{"entity":"NHL","name":"Dallas Stars","url":"//a1.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/dal.png&h=50&w=50","feed":"//www.nhl.com", "location": ["DFW","DAL","AFW"]},
+	{"entity":"NBA","name":"Dallas Mavericks","url":"//cdn.nba.net/assets/logos/teams/secondary/web/DAL.svg","feed":"//www.nba.com", "location": ["DFW","DAL","AFW"]},
+	{"entity":"NFL","name":"Dallas Cowboys","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/DAL.svg", "feed":"//www.nfl.com", "location": ["DFW","DAL","AFW","ABQ","LBB","AUS"]},
+	{"entity":"MLB","name":"Texas Rangers","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/tex.png&h=50&w=50","feed":"//www.mlb.com", "location": ["DFW","DAL","AFW"]},
+
+	{"entity":"NBA","name":"Houston Rockets","url":"//cdn.nba.net/assets/logos/teams/secondary/web/HOU.svg","feed":"//www.nba.com", "location": ["HOU","IAH"]},
+	{"entity":"NFL","name":"Houston Texans","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/HOU.svg", "feed":"//www.nfl.com", "location": ["HOU","IAH"]},
+	{"entity":"MLB","name":"Houston Astros","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/hou.png&h=50&w=50","feed":"//www.mlb.com", "location": ["HOU","IAH"]},
+
+	{"entity":"NHL","name":"Washington Capitals","url":"//a1.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/wsh.png&h=50&w=50","feed":"//www.nhl.com", "location": ["DCA","IAD","ADW"]},	
+	{"entity":"NBA","name":"Washington Wizards","url":"//cdn.nba.net/assets/logos/teams/secondary/web/WAS.svg","feed":"//www.nba.com", "location": ["DCA","IAD","ADW"]},
+	{"entity":"NFL","name":"Washington Redskins","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/WAS.svg", "feed":"//www.nfl.com", "location": ["DCA","IAD","ADW"]},
+	{"entity":"MLB","name":"Washington Nationals","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/bal.png&h=50&w=50","feed":"//www.mlb.com", "location": ["DCA","IAD","ADW"]},
+
+	{"entity":"NFL","name":"Baltimore Ravens","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/BAL.svg", "feed":"//www.nfl.com", "location": ["BWI"]},
+	{"entity":"MLB","name":"Baltimore Orioles","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/bal.png&h=50&w=50","feed":"//www.mlb.com", "location": ["BWI"]},
+
+	{"entity":"NHL","name":"New York Rangers","url":"//a1.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/nyr.png&h=50&w=50","feed":"//www.nhl.com", "location": ["EWR","LGA","JFK"]},	
+	{"entity":"NHL","name":"New York Islanders","url":"//a1.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/nyi.png&h=50&w=50","feed":"//www.nhl.com", "location": ["EWR","LGA","JFK"]},	
+	{"entity":"NHL","name":"New Jersey Devils","url":"//a1.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/nj.png&h=50&w=50","feed":"//www.nhl.com", "location": ["EWR","LGA","JFK"]},	
+	{"entity":"NBA","name":"New York Knicks","url":"//cdn.nba.net/assets/logos/teams/secondary/web/NYK.svg","feed":"//www.nba.com", "location": ["EWR","LGA","JFK"]},
+	{"entity":"NBA","name":"Brooklyn Nets","url":"//cdn.nba.net/assets/logos/teams/secondary/web/BKN.svg","feed":"//www.nba.com", "location": ["EWR","LGA","JFK"]},
+	{"entity":"NFL","name":"New York Giants","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/NYG.svg", "feed":"//www.nfl.com", "location": ["EWR","LGA","JFK"]},
+	{"entity":"NFL","name":"New York Jets","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/NYJ.svg","feed":"//www.nfl.com",  "location": ["EWR","LGA","JFK"]},
+	{"entity":"MLB","name":"New York Mets","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/nym.png&h=50&w=50","feed":"//www.mlb.com", "location": ["EWR","LGA","JFK"]},
+	{"entity":"MLB","name":"New York Yankees","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/nyy.png&h=50&w=50","feed":"//www.mlb.com", "location": ["EWR","LGA","JFK"]},
+
+	{"entity":"NHL","name":"Chicago Blackhawks","url":"//a1.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/chi.png&h=50&w=50","feed":"//www.nhl.com", "location": ["ORD","MDW"]},	
+	{"entity":"NBA","name":"Chicago Bulls","url":"//cdn.nba.net/assets/logos/teams/secondary/web/CHI.svg","feed":"//www.nba.com", "location": ["ORD","MDW"]},
+	{"entity":"NFL","name":"Chicago Bears","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/CHI.svg","feed":"//www.nfl.com", "location": ["ORD","MDW"]},
+	{"entity":"MLB","name":"Chicago Cubs","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/chc.png&h=50&w=50","feed":"//www.mlb.com", "location": ["ORD","MDW"]},
+	{"entity":"MLB","name":"Chicago White Sox","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/chw.png&h=50&w=50","feed":"//www.mlb.com", "location": ["ORD","MDW"]},
+
+	{"entity":"NHL","name":"Minnesota Wild","url":"//a1.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/min.png&h=50&w=50","feed":"//www.nhl.com", "location": ["MSP","HIB"]},	
+	{"entity":"NBA","name":"Minnesota Timberwolves","url":"//cdn.nba.net/assets/logos/teams/secondary/web/MIN.svg","feed":"//www.nba.com", "location": ["MSP","HIB"]},
+	{"entity":"NFL","name":"Minnesota Vikings","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/MIN.svg", "feed":"//www.nfl.com",  "location": ["MSP","HIB"]},
+	{"entity":"MLB","name":"Minnesota Twins","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/min.png&h=50&w=50","feed":"//www.mlb.com", "location": ["MSP","HIB"]},
+
+	{"entity":"NHL","name":"Philadelphia Flyers","url":"//a1.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/phi.png&h=50&w=50","feed":"//www.nhl.com", "location": ["PHL"]},	
+	{"entity":"NBA","name":"Philadelphia 76ers","url":"//cdn.nba.net/assets/logos/teams/secondary/web/PHI.svg","feed":"//www.nba.com", "location": ["PHL"]},
+	{"entity":"NFL","name":"Philadelphia Eagles","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/PHI.svg", "feed":"//www.nfl.com", "location": ["PHL"]},
+	{"entity":"MLB","name":"Philadelphia Phillies","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/phi.png&h=50&w=50","feed":"//www.mlb.com", "location": ["PHL"]},
+
+	{"entity":"NHL","name":"Detroit Red Wings","url":"//a1.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/det.png&h=50&w=50","feed":"//www.nhl.com", "location": ["DTW"]},	
+	{"entity":"NBA","name":"Detroit Pistons","url":"//cdn.nba.net/assets/logos/teams/secondary/web/DET.svg","feed":"//www.nba.com", "location": ["DTW"]},
+	{"entity":"NFL","name":"Detroit Lions","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/DET.svg", "feed":"//www.nfl.com", "location": ["DTW"]},
+	{"entity":"MLB","name":"Detroit Tigers","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/det.png&h=50&w=50","feed":"//www.mlb.com", "location": ["DTW"]},
+
+	{"entity":"NHL","name":"Buffalo Sabres","url":"//a1.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/buf.png&h=50&w=50","feed":"//www.nhl.com", "location": ["BUF"]},	
+	{"entity":"NFL","name":"Buffalo Bills","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/BUF.svg", "feed":"//www.nfl.com", "location": ["BUF"]},
+
+	{"entity":"NHL","name":"Pittsburgh Penguins","url":"//a1.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/pit.png&h=50&w=50","feed":"//www.nhl.com", "location": ["PIT","ERI"]},	
+	{"entity":"NFL","name":"Pittsburgh Steelers","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/PIT.svg", "feed":"//www.nfl.com", "location": ["PIT","ERI"]},
+	{"entity":"MLB","name":"Pittsburgh Pirates","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/pit.png&h=50&w=50","feed":"//www.mlb.com", "location": ["PIT","ERI"]},
+
+	{"entity":"NBA","name":"Cleveland Cavaliers","url":"//cdn.nba.net/assets/logos/teams/secondary/web/CLE.svg","feed":"//www.nba.com", "location": ["CLE"]},
+	{"entity":"NFL","name":"Cleveland Browns","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/CLE.svg", "feed":"//www.nfl.com", "location": ["CLE"]},
+	{"entity":"MLB","name":"Cleveland Indians","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/cle.png&h=50&w=50","feed":"//www.mlb.com", "location": ["CLE"]},
+
+	{"entity":"NBA","name":"Atlanta Hawks","url":"//cdn.nba.net/assets/logos/teams/secondary/web/ATL.svg","feed":"//www.nba.com", "location": ["ATL","AGS"]},
+	{"entity":"NFL","name":"Atlanta Falcons","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/ATL.svg", "feed":"//www.nfl.com", "location": ["ATL","AGS"]},
+	{"entity":"MLB","name":"Atlanta Braves","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/atl.png&h=50&w=50","feed":"//www.mlb.com", "location": ["ATL","AGS"]},
+	
+	{"entity":"NHL","name":"Boston Bruins","url":"//a1.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/bos.png&h=50&w=50","feed":"//www.nhl.com", "location": ["BOS","BGR","PWM"]},	
+	{"entity":"NBA","name":"Boston Celtics","url":"//cdn.nba.net/assets/logos/teams/secondary/web/BOS.svg","feed":"//www.nba.com", "location": ["BOS","BGR","PWM"]},
+	{"entity":"NFL","name":"New England Patriots","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/NE.svg", "feed":"//www.nfl.com", "location": ["BOS","BGR","PWM"]},
+	{"entity":"MLB","name":"Boston Red Sox","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/bos.png&h=50&w=50","feed":"//www.mlb.com", "location": ["BOS","BGR","PWM"]},		
+
+	{"entity":"NHL","name":"Los Angeles Kings","url":"//a1.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/la.png&h=50&w=50","feed":"//www.nhl.com", "location": ["LAX"]},	
+	{"entity":"NBA","name":"Los Angeles Lakers","url":"//cdn.nba.net/assets/logos/teams/secondary/web/LAL.svg","feed":"//www.nba.com", "location": ["LAX"]},
+	{"entity":"NFL","name":"Los Angeles Rams","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/LA.svg", "feed":"//www.nfl.com", "location": ["LAX"]},
+	{"entity":"NFL","name":"Los Angeles Chargers","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/LAC.svg", "feed":"//www.nfl.com", "location": ["LAX"]},
+	{"entity":"MLB","name":"Los Angeles Dodgers","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/lad.png&h=50&w=50","feed":"//www.mlb.com", "location": ["LAX"]},
+	
+	{"entity":"NHL","name":"San Jose Sharks","url":"//a1.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/sj.png&h=50&w=50","feed":"//www.nhl.com", "location": ["SJC","SFO","OAK"]},	
+	{"entity":"NBA","name":"Golden State Warriors","url":"//cdn.nba.net/assets/logos/teams/secondary/web/GSW.svg","feed":"//www.nba.com", "location": ["SJC","SFO","OAK"]},
+	{"entity":"NFL","name":"San Francisco 49ers","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/SF.svg", "feed":"//www.nfl.com", "location": ["SJC","SFO","OAK"]},
+	{"entity":"MLB","name":"Oakland Athletics","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/oak.png&h=50&w=50","feed":"//www.mlb.com", "location": ["SJC","SFO","OAK"]},
+	{"entity":"NFL","name":"San Francisco 49ers","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/SF.svg", "feed":"//www.nfl.com", "location": ["SJC","SFO","OAK"]},
+	{"entity":"MLB","name":"Oakland Raiders","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/oakpng&h=50&w=50","feed":"//www.mlb.com", "location": ["SJC","SFO","OAK"]},		
+	
+	{"entity":"NFL","name":"Seattle Seahawks","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/SEA.svg", "feed":"//www.nfl.com", "location": ["SEA"]},
+	{"entity":"MLB","name":"Seattle Mariners","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/sea.png&h=50&w=50","feed":"//www.mlb.com", "location": ["SEA"]}
+
+]

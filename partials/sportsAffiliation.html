@@ -1,0 +1,217 @@
+<div ng-controller="MainController">
+	<a href="#/">Back to the Master Gallery</a>
+	
+	<div id="jrTest"><input id="searchTextField" name="searchTextField" type="text" size="40"/></div>
+	
+	<div>Sports Teams per Airport location</div>
+	
+	
+    <h1>{{enterLocation}}</h1>
+
+    <div>{{error}}</div>
+
+	<!--<form name="airportToTeamsSearch" ng-submit="airportSearch(airport)"> -->
+	<form name="airportToTeamsSearch" ng-submit="airportSearchV2(airport)">
+	  <input type="text" placeholder="Airport to Sports" ng-maxlength="3" ng-model="airport" ng-change="toUC()" />
+	  <input type="submit" value="Search" />
+	</form>	
+	
+	<div>
+	</div>
+	
+<!--	<div id="PicLoc_dropdown" class="angucomplete-dropdown toKeepDropdown" ng-show="showDropdown"> -->
+	<div id="PicLoc_dropdown" class="angucomplete-dropdown toKeepDropdown" ng-if="showDropdown">
+		<div class="angucomplete-results">
+			<!-- <div ng-repeat="result in autocompleteResults | orderBy:'order' | groupBy:['category']"> -->
+			<div ng-repeat="result in filteredResults">
+				<!-- <hr class="angucomplete-rule"> -->
+				<!--<div class="angucomplete-row" ng-click="selectResult(result)" ng-focus="autoCompleteFocus(true)" ng-blur="autoCompleteFocus(false)">-->
+<!--				<a class="angucomplete-row" ng-click="selectResult(result)" ng-class="{ autoFocus: focus, autoBlur: blur }"-->
+				<a class="angucomplete-row" ng-click="selectResult(result.value)" ng-class="{ autoFocus: focus, autoBlur: blur }"  
+						ng-mouseover="focus=true;blur=false;" ng-mouseleave="focus=false;blur=true;">
+					<!-- <span class="ng-binding ng-scope"> 
+					{{result}}
+					</span> -->
+					{{result.prefix}}<span class="matched">{{result.match}}</span>{{result.suffix}}
+					 -- {{result.airportName}}
+				</a>
+			</div>
+		</div>
+	</div>	
+	<div class="listArea">
+		<div class="galleryList" ng-repeat="airports in airportToSportsInfo | filter:airport" ng-if="noAirportMatchesReturned===false">
+			<div class="picContainer" ng-repeat="locs in airports.location" ng-if="locs==airport">
+				<table class="gallery">	  
+					<tbody>
+						<tr>
+							<td class="teamsContainer" ng-repeat="team in airports.teams" ng-if="locs==airport | uppercase">
+								<div class="entity">{{team.entity}}</div>
+								<div class="team">{{team.name}}</div>
+<!--								<div ng-if="team.feed"><a href="" ng-click="nbaScheduleSearch(team.name)"><img ng-src="{{team.url}}" ng-style="{'width': '30px'}" /></a></div>
+	-->							<div ng-if="team.feed"><a href="" ng-click="scheduleSearch(team.name, team.entity)"><img ng-src="{{team.url}}" ng-style="{'width': '30px'}" /></a></div>
+								<div ng-if="!team.feed"><img ng-src="{{team.url}}" ng-style="{'width': '30px'}" /></div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="galleryList" ng-if="sportsInfoToAirports.length && !noAirportMatchesReturned">
+			<div class="picContainer">
+				<table class="gallery">	  
+					<tbody>
+						<tr>
+							<!-- <td class="teamsContainer" ng-repeat="team in airports.teams" ng-if="locs==airport | uppercase">   -->
+							<!-- <td class="teamsContainer"  ng-repeat="locs in airports.location" ng-if="locs==airport"> -->
+							<!-- <td class="teamsContainer" ng-repeat="airports in sportsInfoToAirports | filter:airport" ng-if="noAirportMatchesReturned===false"> -->
+							<td class="teamsContainer" ng-repeat="airports in sportsInfoToAirports" ng-if="noAirportMatchesReturned===false">
+								<!--<div  ng-repeat="location in airports | filter:airport" > -->
+									<div class="entity">{{airports.entity}}</div>
+									<div class="team">{{airports.name}}</div>
+	<!--								<div ng-if="team.feed"><a href="" ng-click="nbaScheduleSearch(team.name)"><img ng-src="{{team.url}}" ng-style="{'width': '30px'}" /></a></div>
+		-->							<div ng-if="airports.feed"><a href="" ng-click="scheduleSearch(airports.name, airports.entity)"><img ng-src="{{airports.url}}" ng-style="{'width': '30px'}" /></a></div>
+									<div ng-if="!airports.feed"><img ng-src="{{airports.url}}" ng-style="{'width': '30px'}" /></div>
+								<!--</div> -->
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>		
+		
+		<div ng-if="noAirportMatchesReturned===true" class="noMatches">
+			We do not have an airport match, please enter another Airport.
+		</div>
+		<hr ng-if="nbaSchedule.length>0" />
+		<div class="galleryList" ng-if="nbaSchedule.length>0">
+			<select ng-model="myNBAopponent" ng-options="c.team for c in opponentsList | orderBy:'value'" ng-change="updateTeamNBA(this)" ng-if="nbaSchedule.length>0"></select>
+<!--		<select ng-model="myNBAopponent" ng-options="c.team for c in opponentsList | orderBy:('value'==='Full Schedule'?'':'value')" ng-change="updateTeamNBA(this)" ng-if="nbaSchedule.length>0"></select>
+-->
+			<div class="nba"></div>
+			<table class="gallery">	  
+				<tbody>
+					<tr ng-repeat="teams in nbaSchedule |filter:myTeam"> 
+					<!-- <tr ng-repeat="teams in nbaSchedule |filter:(myTeam==='Full Schedule'?'':myTeam)"> -->
+						<td class="teamsContainer">
+							<div class="entity">{{teams.visiting}}</div>
+						</td>
+						<td class="teamsContainer">
+							<div class="entity">VS.</div>
+						</td>
+						<td class="teamsContainer">
+							<div class="entity">{{teams.home}}</div>
+						</td>
+						<td class="teamsContainer">
+							<div class="entity">At the {{teams.arena}} in {{teams.location}}</div>
+						</td>	
+						<td class="teamsContainer">
+							<div class="entity">On {{teams.date}} @ {{teams.time}}</div>
+						</td>		
+					</tr>
+				</tbody>
+			</table>
+		</div>		
+
+		<hr ng-if="mlbSchedule.length>0" />		
+		<div class="galleryList" ng-if="mlbSchedule.length>0">
+			<select ng-model="myMLBopponent" ng-options="c.team for c in opponentsList | orderBy:'value'" ng-change="updateTeamMLB(this)" ng-if="mlbSchedule.length>0"></select>
+<!--			<select ng-model="myMLBopponent" ng-options="c.team for c in opponentsList | orderBy:('value'==='Full Schedule'?'':'value')" ng-change="updateTeamMLB(this)" ng-if="mlbSchedule.length>0"></select>
+-->
+			<div class="mlb"></div>
+			<table class="gallery">	  
+				<tbody>	
+					<tr ng-repeat="teams in mlbSchedule |filter:myTeam"> 
+					<!-- <tr ng-repeat="teams in nbaSchedule |filter:(myTeam==='Full Schedule'?'':myTeam)"> -->
+						<td class="teamsContainer">
+							<div class="entity">{{teams.visiting}}</div>
+						</td>
+						<td class="teamsContainer">
+							<div class="entity">VS.</div>
+						</td>
+						<td class="teamsContainer">
+							<div class="entity">{{teams.home}}</div>
+						</td>
+						<td class="teamsContainer">
+							<div class="entity">At the {{teams.arena}} in {{teams.location}}</div>
+						</td>	
+						<td class="teamsContainer">
+							<div class="entity">On {{teams.date}} @ {{teams.time}}</div>
+						</td>		
+					</tr>
+				</tbody>
+			</table>
+		</div>		
+
+		<hr ng-if="nhlSchedule.length>0" />		
+		<div class="galleryList" ng-if="nhlSchedule.length>0">
+			<select ng-model="myNHLopponent" ng-options="c.team for c in opponentsList | orderBy:'value'" ng-change="updateTeamNHL(this)" ng-if="nhlSchedule.length>0"></select>
+<!--			<select ng-model="myMLBopponent" ng-options="c.team for c in opponentsList | orderBy:('value'==='Full Schedule'?'':'value')" ng-change="updateTeamMLB(this)" ng-if="mlbSchedule.length>0"></select>
+-->
+			<div class="nhl"></div>
+			<table class="gallery">	  
+				<tbody>	
+					<tr ng-repeat="teams in nhlSchedule |filter:myTeam"> 
+					<!-- <tr ng-repeat="teams in nbaSchedule |filter:(myTeam==='Full Schedule'?'':myTeam)"> -->
+						<td class="teamsContainer">
+							<div class="entity">{{teams.visiting}}</div>
+						</td>
+						<td class="teamsContainer">
+							<div class="entity">VS.</div>
+						</td>
+						<td class="teamsContainer">
+							<div class="entity">{{teams.home}}</div>
+						</td>
+						<td class="teamsContainer">
+							<div class="entity">At the {{teams.arena}}</div>
+						</td>	
+						<td class="teamsContainer">
+							<div class="entity">On {{teams.date}}</div>
+						</td>		
+					</tr>
+				</tbody>
+			</table>
+		</div>	
+		
+		<hr ng-if="nflSchedule.length>0" />		
+		<div class="galleryList" ng-if="nflSchedule.length>0">
+			<select ng-model="myNFLopponent" ng-options="c.team for c in opponentsList | orderBy:'value'" ng-change="updateTeamNFL(this)" ng-if="nflSchedule.length>0"></select>
+<!--			<select ng-model="myMLBopponent" ng-options="c.team for c in opponentsList | orderBy:('value'==='Full Schedule'?'':'value')" ng-change="updateTeamMLB(this)" ng-if="mlbSchedule.length>0"></select>
+-->
+			<div class="nfl"></div>
+			<table class="gallery">	  
+				<tbody>	
+					<tr ng-repeat="teams in nflSchedule |filter:myTeam"> 
+					<!-- <tr ng-repeat="teams in nbaSchedule |filter:(myTeam==='Full Schedule'?'':myTeam)"> -->
+						<td class="teamsContainer">
+							<div class="entity">{{teams.visiting}}</div>
+						</td>
+						<td class="teamsContainer">
+							<div class="entity">VS.</div>
+						</td>
+						<td class="teamsContainer">
+							<div class="entity">{{teams.home}}</div>
+						</td>
+						<td class="teamsContainer">
+							<div class="entity">At the {{teams.arena}}</div>
+						</td>	
+						<td class="teamsContainer">
+							<div class="entity">On {{teams.date}}</div>
+						</td>		
+					</tr>
+				</tbody>
+			</table>
+		</div>	
+		<!--
+		<script type="text/javascript" src="/assets/js/hook.directive.js"></script>
+		-->
+   <!-- Google Places API -->
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-9YSa9Ou2sYYULk422kXQz5lWrz0cqUk&libraries=places"></script>  
+	  
+	  <script src="assets/js/usCitySearch.js" type="text/javascript"></script>
+	  
+<!--      <script src="assets/js/appGoogleMapsStuff.js" type="text/javascript"></script>  
+      <script src="assets/js/addUpdateFB.js" type="text/javascript"></script>
+	  -->
+	</div>
+	
+	</div>

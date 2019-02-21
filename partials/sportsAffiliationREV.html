@@ -1,0 +1,80 @@
+<div ng-controller="sportsAffiliation">
+	<a href="#/">Back to the Master Gallery</a>
+	
+	<div>Sports Teams per Airport location</div>
+
+	<ul class="step-progress-bar">
+		<li ng-class="{'active':(1 == $progressbar.activeItem), 'processed':(1 < $progressbar.activeItem )}" 
+			_title="Pick an Airport" ng-href="#/sportsAffiliationREV" class="" ng-click="goToView('/sportsAffiliationREV')">
+			<div class="progressbarcont">
+				<span class="step-number">1</span> 
+				<span class="step-title">Pick an Airport</span>
+				<a ng-click="doInfoToggle(1);" ng-href="" ng-class="{'opShow':(1 == $progressbar.activeItem), 'opHide':(1 != $progressbar.activeItem )}" 
+				ng-mouseover="pageInfo(1, true)" ng-mouseleave="pageInfo(1, false)">&nbsp;&nbsp;&nbsp;
+				<span ng-class="{'showArrow':(true == pickAirportHover),'hideArrow':(false == pickAirportHover)}" class="opT3Triangle"></span>
+				<span  ng-class="{'showHover':(true == pickAirportHover),'hideHover':(false == pickAirportHover)}">
+				We have a list of the 141 largest airports in the USA, 
+				and the professional teams that are most popular at that location.  
+				Enter the airport code, we will use auto-complete to expedite the process.
+				</span></a>
+			</div>
+		</li>
+		<li ng-class="{'active':(2 == $progressbar.activeItem), 'processed':(2 < $progressbar.activeItem )}" 
+			_title="Pick an Team" ng-href="#/teamSelectREV" class="" ng-click="goToView('/teamSelectREV');">
+			<div class="progressbarcont">
+				<span class="step-number">2</span> 
+				<span class="step-title">Pick a Team</span>
+				<a ng-click="doInfoToggle(2);" ng-class="{'opShow':(2 == $progressbar.activeItem), 'opHide':(2 != $progressbar.activeItem )}" 
+				ng-mouseover="pageInfo(2, true)" ng-mouseleave="pageInfo(2, false)" >&nbsp;&nbsp;&nbsp;
+				<span ng-class="{'showArrow':(true == pickTeamHover),'hideArrow':(false == pickTeamHover)}" class="opT3Triangle"></span>
+				<span ng-class="{'showHover':(true == pickTeamHover),'hideHover':(false == pickTeamHover)}">
+				We have compiled a list of popular teams for your airport selection.
+				Select a team to see its schedule.
+				</span></a>
+			</div>
+		</li>
+		<li ng-class="{'active':(3 == $progressbar.activeItem), 'processed':(3 < $progressbar.activeItem )}" 
+			_title="Team Schedule" ng-href="#/teamScheduleREV" class="" ng-click="goToView('/teamSelectREV');">
+			<div class="progressbarcont">
+				<span class="step-number">3</span> 
+				<span class="step-title">Schedule</span>
+				<a ng-click="doInfoToggle(3);" ng-class="{'opShow':(3 == $progressbar.activeItem), 'opHide':(3 != $progressbar.activeItem )}" 
+				ng-mouseover="pageInfo(3, true)" ng-mouseleave="pageInfo(3, false)">&nbsp;&nbsp;&nbsp;
+				<span ng-class="{'showArrow':(true == showScheduleHover),'hideArrow':(false == showScheduleHover)}" class="opT3Triangle"></span>
+				<span ng-class="{'showHover':(true == showScheduleHover),'hideHover':(false == showScheduleHover)}" >
+				We have provided you with a schedule for the {{myTeam}}.  You can select an opponent to filter the schedule
+				</span></a>
+			</div>
+		</li>
+	</ul>	
+
+	<!--<form name="airportToTeamsSearch" ng-submit="airportSearch(airport)"> -->
+	<form name="airportToTeamsSearch" ng-submit="airportSearchV2(airport)">
+	  <input type="text" placeholder="Airport to Sports" ng-maxlength="3" ng-model="airport" ng-change="toUC()" />
+	  <input type="submit" value="Search" />
+	</form>	
+	
+	<div>
+	</div>
+	
+<!--	<div id="PicLoc_dropdown" class="angucomplete-dropdown toKeepDropdown" ng-show="showDropdown"> -->
+	<div id="PicLoc_dropdown" class="angucomplete-dropdown toKeepDropdown" ng-if="showDropdown">
+		<div class="angucomplete-results">
+			<!-- <div ng-repeat="result in autocompleteResults | orderBy:'order' | groupBy:['category']"> -->
+			<div ng-repeat="result in filteredResults">
+				<!-- <hr class="angucomplete-rule"> -->
+				<!--<div class="angucomplete-row" ng-click="selectResult(result)" ng-focus="autoCompleteFocus(true)" ng-blur="autoCompleteFocus(false)">-->
+<!--				<a class="angucomplete-row" ng-click="selectResult(result)" ng-class="{ autoFocus: focus, autoBlur: blur }"-->
+				<a class="angucomplete-row" ng-click="selectResult(result.value)" ng-class="{ autoFocus: focus, autoBlur: blur }"  
+						ng-mouseover="focus=true;blur=false;" ng-mouseleave="focus=false;blur=true;">
+					<!-- <span class="ng-binding ng-scope"> 
+					{{result}}
+					</span> -->
+					{{result.prefix}}<span class="matched">{{result.match}}</span>{{result.suffix}}
+					 -- {{result.airportName}}
+				</a>
+			</div>
+		</div>
+	</div>	
+	
+</div>

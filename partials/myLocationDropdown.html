@@ -1,0 +1,12 @@
+	<div id="PicLoc_dropdown" class="angucomplete-dropdown toKeepDropdown" ng-if="showDropdown">
+		<div class="angucomplete-results">
+			<div ng-repeat="result in filteredResults">
+				<a class="angucomplete-row" ng-click="selectResult(result.value)" ng-class="{ autoFocus: focus, autoBlur: blur }"  
+						ng-mouseover="focus=true;blur=false;" ng-mouseleave="focus=false;blur=true;">
+					{{result.prefix}}<span class="matched">{{result.match}}</span>{{result.suffix}}
+					 -- {{result.airportName}}
+				</a>
+			</div>
+		</div>
+	</div>	
+	

@@ -1,0 +1,113 @@
+[
+  {
+    "id": 1,
+	"name":"Local Professianal and College Teams",
+	"location": ["DFW","DAL"],
+    "teams": [
+			{"entity":"NHL","name":"Dallas Stars","url":"//a1.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/dal.png&h=50&w=50","feed":"//www.nhl.com"},
+			{"entity":"NBA","name":"Dallas Mavericks","url":"//cdn.nba.net/assets/logos/teams/secondary/web/DAL.svg","feed":"//www.nba.com"},
+			{"entity":"NFL","name":"Dallas Cowboys","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/DAL.svg"},
+			{"entity":"MLB","name":"Texas Rangers","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/tex.png&h=50&w=50","feed":"//www.mlb.com"},
+			{"entity":"NCAA","name":"TCU","url":"//i.turner.ncaa.com/sites/default/files/images/logos/schools/t/tcu.17.png"},
+			{"entity":"NCAA","name":"SMU","url":"//i.turner.ncaa.com/sites/default/files/images/logos/schools/s/smu.17.png"}
+	]	
+  }, 
+  {
+    "id": 2,
+	"name":"Local Professianal and College Teams",
+	"location": ["IAH","HOU"],
+    "teams": [
+			{"entity":"NBA","name":"Houston Rockets","url":"//cdn.nba.net/assets/logos/teams/secondary/web/HOU.svg","feed":"//www.nba.com"},
+			{"entity":"NFL","name":"Houston Texans","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/HOU.svg"},
+			{"entity":"MLB","name":"Houston Astros","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/hou.png&h=50&w=50","feed":"//www.mlb.com"},
+			{"entity":"NCAA","name":"Houston Cougars","url":"//i.turner.ncaa.com/sites/default/files/images/logos/schools/h/houston.17.png"},
+			{"entity":"NCAA","name":"Rice Owls","url":"//i.turner.ncaa.com/sites/default/files/images/logos/schools/r/rice.17.png"}
+	]	
+  },   
+  {
+    "id": 3,
+	"name":"Local Professianal and College Teams",
+	"location": ["IAD","DCA"],
+    "teams": [
+			{"entity":"NHL","name":"Washington Capitals","url":"//a1.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/wsh.png&h=50&w=50","feed":"//www.nhl.com"},	
+			{"entity":"NBA","name":"Washington Wizards","url":"//cdn.nba.net/assets/logos/teams/secondary/web/WAS.svg","feed":"//www.nba.com"},
+			{"entity":"NFL","name":"Washington Redskins","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/WAS.svg"},
+			{"entity":"MLB","name":"Washington Nationals","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/bal.png&h=50&w=50","feed":"//www.mlb.com"},
+			{"entity":"NCAA","name":"Maryland Terrapins","url":"//i.turner.ncaa.com/sites/default/files/images/logos/schools/m/maryland.17.png"},
+			{"entity":"NCAA","name":"Georgetown Hoyas","url":"//i.turner.ncaa.com/sites/default/files/images/logos/schools/g/georgetown.17.png"},
+			{"entity":"NCAA","name":"George Washington Colonials","url":"//i.turner.ncaa.com/sites/default/files/images/logos/schools/g/george-washington.17.png"}
+	]	
+  },   
+  {
+    "id": 4,
+	"name":"Local Professianal and College Teams",
+	"location": ["BWI"],
+    "teams": [
+			{"entity":"NFL","name":"Baltimore Ravens","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/BAL.svg"},
+			{"entity":"MLB","name":"Baltimore Orioles","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/bal.png&h=50&w=50","feed":"//www.mlb.com"},
+			{"entity":"NCAA","name":"Maryland Terrapins","url":"//i.turner.ncaa.com/sites/default/files/images/logos/schools/m/maryland.17.png"},
+			{"entity":"NCAA","name":"Navy Midshipmen","url":"//i.turner.ncaa.com/sites/default/files/images/logos/schools/n/navy.17.png"}
+	]	
+  },
+  {
+    "id": 5,
+	"name":"Local Professianal and College Teams",
+	"location": ["EWR","LGA","JFK"],
+    "teams": [
+			{"entity":"NHL","name":"New York Rangers","url":"//a1.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/nyr.png&h=50&w=50","feed":"//www.nhl.com"},	
+			{"entity":"NHL","name":"New York Islanders","url":"//a1.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/nyi.png&h=50&w=50","feed":"//www.nhl.com"},	
+			{"entity":"NHL","name":"New Jersey Devils","url":"//a1.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/nj.png&h=50&w=50","feed":"//www.nhl.com"},	
+			{"entity":"NBA","name":"New York Knicks","url":"//cdn.nba.net/assets/logos/teams/secondary/web/NYK.svg","feed":"//www.nba.com"},
+			{"entity":"NBA","name":"Brooklyn Nets","url":"//cdn.nba.net/assets/logos/teams/secondary/web/BKN.svg","feed":"//www.nba.com"},
+			{"entity":"NFL","name":"New York Giants","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/NYG.svg"},
+			{"entity":"NFL","name":"New York Jets","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/NYJ.svg"},
+			{"entity":"MLB","name":"New York Mets","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/nym.png&h=50&w=50","feed":"//www.mlb.com"},
+			{"entity":"MLB","name":"New York Yankees","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/nyy.png&h=50&w=50","feed":"//www.mlb.com"},
+			{"entity":"NCAA","name":"St. Johns Redmen","url":"//i.turner.ncaa.com/sites/default/files/images/logos/schools/s/st-johns-ny.17.png"},
+			{"entity":"NCAA","name":"Syracuse Orangemen","url":"//i.turner.ncaa.com/sites/default/files/images/logos/schools/s/syracuse.17.png"},
+			{"entity":"NCAA","name":"Columbia Lions","url":"//i.turner.ncaa.com/sites/default/files/images/logos/schools/c/columbia.17.png"},
+			{"entity":"NCAA","name":"Rutgers Scarlett Knoghts","url":"//i.turner.ncaa.com/sites/default/files/images/logos/schools/r/rutgers.17.png"}
+	]	
+  },
+  {
+    "id": 6,
+	"name":"Local Professianal and College Teams",
+	"location": ["ORD","MDW"],
+    "teams": [
+			{"entity":"NHL","name":"Chicago Blackhawks","url":"//a1.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/chi.png&h=50&w=50","feed":"//www.nhl.com"},	
+			{"entity":"NBA","name":"Chicago Bulls","url":"//cdn.nba.net/assets/logos/teams/secondary/web/CHI.svg","feed":"//www.nba.com"},
+			{"entity":"NFL","name":"Chicago Bears","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/CHI.svg"},
+			{"entity":"MLB","name":"Chicago Cubs","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/chc.png&h=50&w=50","feed":"//www.mlb.com"},
+			{"entity":"MLB","name":"Chicago White Sox","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/chw.png&h=50&w=50","feed":"//www.mlb.com"},
+			{"entity":"NCAA","name":"Northwestern Wildcats","url":"//i.turner.ncaa.com/sites/default/files/images/logos/schools/n/northwestern.17.png"}
+	]	
+  },
+  {
+    "id": 7,
+	"name":"Local Professianal and College Teams",
+	"location": ["PHL"],
+    "teams": [
+			{"entity":"NHL","name":"Philadelphia Flyers","url":"//a1.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/phi.png&h=50&w=50","feed":"//www.nhl.com"},	
+			{"entity":"NBA","name":"Philadelphia 76ers","url":"//cdn.nba.net/assets/logos/teams/secondary/web/PHI.svg","feed":"//www.nba.com"},
+			{"entity":"NFL","name":"Philadelphia Eagles","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/PHI.svg"},
+			{"entity":"MLB","name":"Philadelphia Phillies","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/phi.png&h=50&w=50","feed":"//www.mlb.com"},
+			{"entity":"NCAA","name":"Temple Owls","url":"//i.turner.ncaa.com/sites/default/files/images/logos/schools/t/temple.17.png"},
+			{"entity":"NCAA","name":"Villanova Wildcats","url":"//i.turner.ncaa.com/sites/default/files/images/logos/schools/v/villanova.17.png"},
+			{"entity":"NCAA","name":"Drexel Dragons","url":"//i.turner.ncaa.com/sites/default/files/images/logos/schools/d/drexel.17.png"}
+	]	
+  },
+  {
+    "id": 8,
+	"name":"Local Professianal and College Teams",
+	"location": ["BOS"],
+    "teams": [
+			{"entity":"NHL","name":"Boston Bruins","url":"//a1.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/bos.png&h=50&w=50","feed":"//www.nhl.com"},	
+			{"entity":"NBA","name":"Boston Celtics","url":"//cdn.nba.net/assets/logos/teams/secondary/web/BOS.svg","feed":"//www.nba.com"},
+			{"entity":"NFL","name":"New England Patriots","url":"//static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/NE.svg"},
+			{"entity":"MLB","name":"Boston Red Sox","url":"//a.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/bos.png&h=50&w=50","feed":"//www.mlb.com"},
+			{"entity":"NCAA","name":"Boston College Eagles","url":"//i.turner.ncaa.com/sites/default/files/images/logos/schools/b/boston-college.17.png"},
+			{"entity":"NCAA","name":"Harvard Crimson","url":"//i.turner.ncaa.com/sites/default/files/images/logos/schools/h/harvard.17.png"},
+			{"entity":"NCAA","name":"Boston University Terriers","url":"//i.turner.ncaa.com/sites/default/files/images/logos/schools/b/boston-u.17.png"}
+	]	
+  }
+ ]

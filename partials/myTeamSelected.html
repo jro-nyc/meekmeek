@@ -1,0 +1,17 @@
+	<div class="listArea">
+		<div class="galleryList" ng-if="sportsInfoToAirports.length && noAirportMatchesReturned===false">
+			<div class="picContainer">
+				<table class="gallery">	  
+					<tbody>
+						<tr>
+							<td class="teamsContainer" ng-repeat="airports in sportsInfoToAirports" ng-if="noAirportMatchesReturned===false">
+								<div class="entity">{{airports.entity}}</div>
+								<div class="team">{{airports.name}}</div>
+								<div ng-if="airports.feed"><a href="" ng-click="scheduleSearch(airports.name, airports.entity)"><img ng-src="{{airports.url}}" ng-style="{'width': '30px'}" /></a></div>
+								<div ng-if="!airports.feed"><img ng-src="{{airports.url}}" ng-style="{'width': '30px'}" /></div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>		

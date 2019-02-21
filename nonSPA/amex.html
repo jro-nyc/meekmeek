@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="stylesheet" type="text/css" href=" https://secure.cmax.americanexpress.com/Internet/Acquisition/US_en/AppContent/ContentConfiguration/DApply/CCSG/CSS/CheckOut/V2/Checkout_amexBannerStyles.css" />
+</head>
+<body>
+<div id="axpBanner" ></div> 
+
+<script>
+//<!—Following code snipped to be added and JSON elements to be populated .-->
+var axpCheckoutBannerJSON={
+		"targetDivId":"axpBanner",
+		"pid": "[partner Id]",
+		"sig": "[Base64 encoded Signature created by using RSA 2048 Private Key ]",
+		"timeStamp": "[timestamp Value]",
+		"transCost": "[transaction cost]",
+		"aif":"{ applicant info key value pairs ]",
+		"requestId": "[request Id]"
+};
+
+function saveAmexAppResponse(response)
+{  	
+// response is a JSON string. Send this to the server for decrypting and storing in the use session for  pre-filling on payment page.
+		
+	//Sample code for getting JSON values.
+		var json = JSON.parse(response);
+		var requested =json.requestId;
+		var amex_app_status =json.amex_app_status;
+		var axp_banner_window_status =json. axp_banner_window_status;
+		var apply_now_url =json. apply_now_url;
+		var aesKey=json["cust_acct_dtls"].aesKey;
+		var applicationInfo=json["cust_acct_dtls"].accountDetails;
+		var signature=json["cust_acct_dtls"].signature;
+//$('#restResponse').show().html(response);
+
+/*
+// Additional codes following should use the above JSON properties 
+// and send an AJAX or secure REST resource request to the 
+// back end to process…..
+*/
+}
+</script>
+<script src="https://secure.cmax.americanexpress.com/Internet/Acquisition/US_en/AppContent/ContentConfiguration/DApply/CCSG/JS/jquery-1.7.2.min.js"></script>
+<script src=" https://secure.cmax.americanexpress.com/Internet/Acquisition/US_en/AppContent/ContentConfiguration/DApply/CCSG/CheckOut/V1/js/common_scripts.js "></script>
+</body> </html>

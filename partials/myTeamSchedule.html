@@ -1,0 +1,131 @@
+	<hr ng-if="nbaSchedule.length>0" />
+	<div class="galleryList" ng-if="nbaSchedule.length>0">
+		<div class="opponentSelect">
+			<div class="myTeam" ng-if="myTeamOpponent==''">Here are the opponents for the {{myTeam}}.</div>
+			<div class="myTeam" ng-if="myTeamOpponent!=''">Here are the games between the {{myTeam}} and the {{myTeamOpponent}}.</div>
+			<select ng-model="myNBAopponent" ng-options="c.team for c in opponentsList | orderBy:'value'" 
+			ng-change="updateTeamNBA(this)" ng-if="nbaSchedule.length>0"></select>
+		</div>
+		<div class="nba"></div>
+		<table class="gallery">	  
+			<tbody>
+<!--					<tr ng-repeat="teams in nbaSchedule |filter:myTeam">  -->
+				<tr ng-repeat="teams in nbaSchedule |filter:myTeamOpponent"> 
+					<td class="teamsContainer">
+						<div class="entity">{{teams.visiting}}</div>
+					</td>
+					<td class="teamsContainer">
+						<div class="entity">VS.</div>
+					</td>
+					<td class="teamsContainer">
+						<div class="entity">{{teams.home}}</div>
+					</td>
+					<td class="teamsContainer">
+						<div class="entity">At the {{teams.arena}} in {{teams.location}}</div>
+					</td>	
+					<td class="teamsContainer">
+						<div class="entity">On {{teams.date}} @ {{teams.time}}</div>
+					</td>		
+				</tr>
+			</tbody>
+		</table>
+	</div>		
+
+	<hr ng-if="mlbSchedule.length>0" />		
+	<div class="galleryList" ng-if="mlbSchedule.length>0">
+		<div class="opponentSelect">
+			<div class="myTeam" ng-if="myTeamOpponent==''">Here are the opponents for the {{myTeam}}.</div>
+			<div class="myTeam" ng-if="myTeamOpponent!=''">Here are the games between the {{myTeam}} and the {{myTeamOpponent}}.</div>
+			<select ng-model="myMLBopponent" ng-options="c.team for c in opponentsList | orderBy:'value'" 
+			ng-change="updateTeamMLB(this)" ng-if="mlbSchedule.length>0"></select>
+		</div>
+		<div class="mlb"></div>
+		<table class="gallery">	  
+			<tbody>	
+				<!-- <tr ng-repeat="teams in mlbSchedule |filter:myTeam"> 	-->			
+				<tr ng-repeat="teams in mlbSchedule |filter:myTeamOpponent"> 
+					<td class="teamsContainer">
+						<div class="entity">{{teams.visiting}}</div>
+					</td>
+					<td class="teamsContainer">
+						<div class="entity">VS.</div>
+					</td>
+					<td class="teamsContainer">
+						<div class="entity">{{teams.home}}</div>
+					</td>
+					<td class="teamsContainer">
+						<div class="entity">At the {{teams.arena}} in {{teams.location}}</div>
+					</td>	
+					<td class="teamsContainer">
+						<div class="entity">On {{teams.date}} @ {{teams.time}}</div>
+					</td>		
+				</tr>
+			</tbody>
+		</table>
+	</div>		
+
+	<hr ng-if="nhlSchedule.length>0" />		
+	<div class="galleryList" ng-if="nhlSchedule.length>0">
+		<div class="opponentSelect">
+			<div class="myTeam" ng-if="myTeamOpponent==''">Here are the opponents for the {{myTeam}}.</div>
+			<div class="myTeam" ng-if="myTeamOpponent!=''">Here are the games between the {{myTeam}} and the {{myTeamOpponent}}.</div>
+			<select ng-model="myNHLopponent" ng-options="c.team for c in opponentsList | orderBy:'value'" 
+			ng-change="updateTeamNHL(this)" ng-if="nhlSchedule.length>0"></select>
+		</div>
+		<div class="nhl"></div>
+		<table class="gallery">	  
+			<tbody>	
+				<!-- <tr ng-repeat="teams in nhlSchedule |filter:myTeam"> -->
+				<tr ng-repeat="teams in nhlSchedule |filter:myTeamOpponent"> 
+					<td class="teamsContainer">
+						<div class="entity">{{teams.visiting}}</div>
+					</td>
+					<td class="teamsContainer">
+						<div class="entity">VS.</div>
+					</td>
+					<td class="teamsContainer">
+						<div class="entity">{{teams.home}}</div>
+					</td>
+					<td class="teamsContainer">
+						<div class="entity">At the {{teams.arena}}</div>
+					</td>	
+					<td class="teamsContainer">
+						<div class="entity">On {{teams.date}}</div>
+					</td>		
+				</tr>
+			</tbody>
+		</table>
+	</div>	
+	
+	<hr ng-if="nflSchedule.length>0" />		
+	<div class="galleryList" ng-if="nflSchedule.length>0">
+		<div class="opponentSelect">
+			<div class="myTeam" ng-if="myTeamOpponent==''">Here are the opponents for the {{myTeam}}.</div>
+			<div class="myTeam" ng-if="myTeamOpponent!=''">Here are the games between the {{myTeam}} and the {{myTeamOpponent}}.</div>
+			<select ng-model="myNFLopponent" ng-options="c.team for c in opponentsList | orderBy:'value'" 
+			ng-change="updateTeamNFL(this)" ng-if="nflSchedule.length>0"></select>
+		</div>
+		<div class="nfl"></div>
+		<table class="gallery">	  
+			<tbody>	
+				<!-- <tr ng-repeat="teams in nflSchedule |filter:myTeam"> -->
+				<tr ng-repeat="teams in nflSchedule |filter:myTeamOpponent"> 
+					<td class="teamsContainer">
+						<div class="entity">{{teams.visiting}}</div>
+					</td>
+					<td class="teamsContainer">
+						<div class="entity">VS.</div>
+					</td>
+					<td class="teamsContainer">
+						<div class="entity">{{teams.home}}</div>
+					</td>
+					<td class="teamsContainer">
+						<div class="entity">At the {{teams.arena}}</div>
+					</td>	
+					<td class="teamsContainer">
+						<div class="entity">On {{teams.date}}</div>
+					</td>		
+				</tr>
+			</tbody>
+		</table>
+	</div>	

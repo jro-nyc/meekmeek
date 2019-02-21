@@ -1,0 +1,48 @@
+<html>
+<head>
+<script src="/assets/js/customer.placement.js"></script>
+<style>
+.instructions{width:800px;margin:10px 0 30px 0;border-top:2px solid black;}
+ol{font-weight:bold;white-space:nowrap;}
+</style>
+</head>
+<body>
+<h1>STEP 4</h1>
+<br/><br/>
+Go back to the <a href="/nonSPA/step3.html">Step 3</a>
+<br/><br/>
+Go back to the <a href="/nonSPA/step1.html">Step 1</a>
+<div class="instructions">
+Here is an example of a multi-page standard funnel where we conditionally fire a page view based on certain content showing 
+up on one page only, with the rest firing page views on load.<br/><br/>
+The page with the conditional content is "Step 3", and if you click on the "Click to see new view!!!" link, 
+you will see the content and fire the page view.<br/><br/>
+So in order to do this, we do the following:
+<ul>
+	<li>Make sure all but Step 3 are NOT in appMode.  This is the system default setting, and this is changed in the customer.help file, here's my example:
+		<ol>if(document.domain==="www.meekmeek.com" && !!location.pathname.match(/^\/nonSPA\//)){ //Look for a domain and funnel match
+			<ol>if(!!location.pathname.match(/^\/nonSPA\/step3/)){ //If we are on Step 3, put into appMode
+				<ol>optimost.appHelper.enableAppMode( [] );</ol> 
+				<ol>console.log('Going into appMode, in "nonSPA" funnel ON the step3 page');</ol>
+			}</ol>
+			<ol>else console.log('NOT going into appMode, in "nonSPA" funnel');//If not on Step 3, leave in reg mode</ol>
+		}</ol>
+	</li>
+	<li>On Step 3, put the page in appMode, which the code above does.</li>
+	<li>In the experiment template running on Step 3, add the following code in the setup block to stop the page view from firing:
+		<ol>optimost.appHelper.registerTrial( {{$creative.trialId}}, { reportFunc: function( trialInfo ) {}	} );</ol>
+	</li>
+	<li>When the conditional content appears on Step 3, run the following code in the template to fire the page view:
+		<ol>optimost.appHelper.reportPageView( optimost.lookupTrial('{{$creative.trialId}}'));}</ol>
+	</li>
+	<li>In my code, I am adding an onclick event to the link that opens the new view, this is my code:
+		<ol>var obj=document.getElementById("newView");</ol>
+		<ol>addEvent(obj,"click",function(){optimost.appHelper.reportPageView( optimost.lookupTrial('{{$creative.trialId}}'));});</ol>
+	</li>
+	<li>**addEvent is a function that adds an event to the passed-in node, "obj"</li>
+</ul>
+</div>
+
+</body>
+
+</html>
