@@ -1,0 +1,1088 @@
+<html>
+<title>
+Basic Math, SQL via AJAX
+</title>
+<head>
+<script>
+var $opt={
+	addEvent: function(el, evt, func) {
+		if (!el || typeof(func) != "function") return false;
+		if (window.attachEvent) {
+			el.attachEvent("on" + evt, func);
+		} else if (window.addEventListener) {
+			el.addEventListener(evt, func, false);
+		}
+	},
+	tone:function(freq, duration){
+		var context = new (window.AudioContext || window.webkitAudioContext)();
+		var osc = context.createOscillator(); // instantiate an oscillator
+		osc.type = 'sine'; // this is the default - also square, sawtooth, triangle
+		osc.frequency.value = freq; // Hz
+		osc.connect(context.destination); // connect it to the destination
+		osc.start(); // start the oscillator
+		osc.stop(context.currentTime + duration);
+	},
+	maxProblems:500,
+	lastOperation:'init',
+	correctStreak:0,
+	streakGoal:10,
+	correct:0,
+	incorrect:0,
+	tried:0,
+	operationKEY:0,
+	wrongProblems:'',
+	name:'Marc',
+	sendValues:/name|tabulateOperation|correctStreak|correct|incorrect|tried|wrongProblems|operationKEY/,
+	generateKEY:function(){
+		this.wrongProblems='';
+		return Math.floor((Math.random() * 2147483646) + 1);//int positive range
+	},
+	checkStreak:function(){
+		//if(this.correctStreak>=this.streakGoal){
+		if(!(this.correctStreak%this.streakGoal) && this.correctStreak>1){
+			//console.log('You got '+this.correctStreak+' straight!!!');
+			document.getElementById("celebration").style.display="block";
+			document.getElementById("streakLength").innerHTML=this.correctStreak;
+			//this.correctStreak=0;
+			setTimeout(function(){document.getElementById("celebration").style.display="none";},4000);
+		}
+	},
+	hideOperationChoices:function(){
+		var obj=document.querySelector(".operation");
+		if(obj){
+			if(obj.className.indexOf("hidden")===-1)obj.className+=" hidden";
+		}
+	},	
+
+	showOperationChoices:function(){
+		var obj=document.querySelector(".operation");//debugger;
+		if(obj){
+			if(obj.className.indexOf("hidden")!==-1)obj.className=obj.className.replace(" hidden","");
+		}
+	},		
+	userParsing:function(user){
+		var i, len, n, found=false, userOBJ=$opt.responseUser[0], init=document.getElementById('initial'),
+		key='adding|divide|multiply|subtract', ids='adding|divide|multiply|subtract'.split('|');
+		for(i=0,len=ids.length;i<len;i+=1){
+			document.getElementById(ids[i]).style.display='none';
+		}
+		for(n in userOBJ){
+			if(/adding|divide|multiply|subtract/.test(n)){
+				if(userOBJ[n]==='1')document.getElementById(n).style.display='inline-block';
+				found=true;
+			}
+		}
+		if(found && init){
+			init.style.display='none';
+			$opt.name=user;
+			if(!!userOBJ['nickname']){
+				newDiv=document.createElement("div");
+				newDiv.className="welcome";
+				newDiv.innerHTML="&#x1F600;Welcome, "+userOBJ['nickname']+"&#x1F600;";
+				document.body.insertBefore(newDiv,document.body.firstChild);
+			}
+		}
+		/*
+		if(user==='Markie' || user==='Marc Romero' ){
+			this.name='Marc';
+			divs=document.querySelectorAll('.forJohnny');
+			for(i=0,len=divs.length;i<len;i+=1){
+				divs[i].style.display='none';
+			}
+			divs=document.querySelector('#initial');			
+			divs.style.display='none';	
+			found=user;	
+		}
+		if(user==='Johnny' || user==='John Romero' ){
+			this.name='Johnny';
+			divs=document.querySelectorAll('.forMarc');
+			for(i=0,len=divs.length;i<len;i+=1){
+				divs[i].style.display='none';
+			}
+			divs=document.querySelector('#initial');
+			divs.style.display='none';
+			found=user;
+		}	*/	
+		return found;
+		
+	},	
+	user:function(user){
+		var divs, i, len, found=false;;
+		if(user==='Markie' || user==='Marc Romero' ){
+			this.name='Marc';
+			divs=document.querySelectorAll('.forJohnny');
+			for(i=0,len=divs.length;i<len;i+=1){
+				divs[i].style.display='none';
+			}
+			divs=document.querySelector('#initial');			
+			divs.style.display='none';	
+			found=user;	
+		}
+		if(user==='Johnny' || user==='John Romero' ){
+			this.name='Johnny';
+			divs=document.querySelectorAll('.forMarc');
+			for(i=0,len=divs.length;i<len;i+=1){
+				divs[i].style.display='none';
+			}
+			divs=document.querySelector('#initial');
+			divs.style.display='none';
+			found=user;
+		}		
+		return found;
+		
+	},
+	tabulate:function(){
+		var xmlhttp = new XMLHttpRequest(), tempOBJ={}, n, str='';
+		xmlhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				//document.getElementById("return").innerHTML = this.responseText;
+				console.log('AJAX RESPONSE from "tabulate.2.php:" - '+this.responseText);
+			}
+		};
+		for(n in $opt){
+			if((typeof($opt[n])==="string" || typeof($opt[n])==="number") && this.sendValues.test(n)){
+				tempOBJ[n]=$opt[n];
+				str+=(str!==''?'&':'')+n+'='+$opt[n];
+				//str+=(str!==''?'&':'')+n+'='+encodeURIComponent($opt[n]);
+			}
+		}		
+		this.showCurrentResult(tempOBJ);
+		////xmlhttp.open("GET", "tabulate.php?" + str, true);
+		xmlhttp.open("GET", "tabulate.2.php?" + str, true);		
+		//xmlhttp.open("GET", "tabulate.3.php?" + str, true);		
+		////"GET", encodeURIComponent("tabulate.2.php?" + str), true);
+		xmlhttp.send();	
+
+	},
+	getUserList:function(){
+		var xmlhttp = new XMLHttpRequest(), tempOBJ={}, n, str='', i, len;
+		xmlhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				//document.getElementById("return").innerHTML = this.responseText;
+				$opt.responseUser=JSON.parse(this.responseText);
+				if($opt.responseUser.length && $opt.responseUser[0].name){
+					console.log('AJAX RESPONSE from "getUserList.php was '+$opt.responseUser[0].name);
+					$opt.loginComboPicks=[];					
+					$opt.loginComboStep2($opt.responseUser[0].name);
+				}
+				else {
+					console.log('AJAX RESPONSE from "getUserList.php was unsuccesful, no user match');
+					$opt.loginComboPicks=[];
+					if(!!$opt.futbolMatch)$opt.loginComboStep2(false);
+					else $opt.loginComboStep1();
+				}
+			}
+		};
+		for(i=0,len=this.loginComboPicks.length;i<len;i+=1){
+			str+=this.loginComboPicks[i]+(len>i+1?'|':'');
+		}
+		if(!!this.futbolMatch)str+='&name='+	this.futbolMatch;	
+		this.showCurrentResult(tempOBJ);
+		xmlhttp.open("GET", "getUserList.php?combo=" + str, true);		
+		xmlhttp.send();	
+
+	},	
+	showCurrentResult:function(tempOBJ){
+		var obj=document.getElementById("currentResult"), n, str='<table cellspacing="0" cellpaddng="0">', hdr='<tr>', bdy='<tr>', entries=false;
+		for(n in tempOBJ){
+			if(n!=='operationKEY'){
+				hdr+='<th>'+n+'</th>';
+				bdy+='<td>'+tempOBJ[n]+'</td>';
+			}
+			entries=true;
+		}	
+		if(entries){
+			hdr+='<th>operationKEY</th>';
+			bdy+='<td>'+tempOBJ['operationKEY']+'</td>';
+			str+=hdr+bdy+'</table>';
+			if(obj)obj.innerHTML=str;
+		}
+	},
+	showResponse:function(){
+		///results
+		var n, table, i, len, j, k, len3, len2, probs, tmp, tmp2, obj=document.getElementById("results"), str='', date_time, 
+		hdr='<tr><th>Name</th><th>Operation</th><th>Right</th><th>Wrong</th><th>Missed Equation</th><th>Date-Time</th></tr>';
+		for(i=0,len=$opt.responseOBJ.length;i<len;i+=1){
+			tmp=$opt.responseOBJ[i].wrongProblems.split('_'), probs='', operands={'add':'+','sub':'-','mult':'x','div':'/'}, match='';
+			for(j=0,len2=tmp.length;j<len2;j+=1){
+				if(match.indexOf(tmp[j])!==-1){
+				
+				}
+				else {
+					tmp2=tmp[j].split('-');
+					probs+=(probs!==''?' , ':'')+tmp2[0]+operands[$opt.responseOBJ[i].operation]+tmp2[1]+'='+tmp2[2];
+					match+=tmp[j]+'|';
+				}
+			}
+			tmp = $opt.responseOBJ[i].reg_date.split(':');
+			if(tmp.length>1)date_time=tmp[0]+':'+tmp[1];
+			else date_time='Not Defined';
+			str+=['',
+				'<tr><td>',
+				$opt.responseOBJ[i].name,
+				'</td><td>',
+				$opt.responseOBJ[i].operation,
+				'</td><td>',
+				$opt.responseOBJ[i].correct,
+				'</td><td>',
+				$opt.responseOBJ[i].incorrect,
+				'</td><td>',
+				probs,
+				'</td><td>',
+				date_time,
+				'</td><tr>',
+			''].join('');
+				
+		}
+		if(obj){
+			obj.innerHTML='<div><button onclick="$opt.removeResults()">Remove Results</button></div><table cellspacing="0" cellpadding="0">'+hdr+str+'</table>';
+			obj.className="show";
+		}
+		
+	},
+	removeResults:function(){
+		obj=document.getElementById("results");
+		if(obj){
+			obj.innerHTML='';
+			obj.className='';
+		}
+	},
+	getResults:function(all){
+		var xmlhttp = new XMLHttpRequest(), tempOBJ={}, n, str='';
+		xmlhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				//document.getElementById("return").innerHTML = this.responseText;
+				console.log('AJAX RESPONSE from "getResults.php:" - '+this.responseText);
+				$opt.responseOBJ= JSON.parse(this.responseText);
+				if(all)$opt.showResponse();
+				else $opt.showCurrentResult();
+			}
+		};
+		if(!!$opt['name']){
+			str='name='+$opt['name'];
+		}
+		else{
+			console.log('No name, no getResults call');
+			return;
+		}
+		xmlhttp.open("GET", "getResults.php?" + str, true);		
+		xmlhttp.send();	
+
+	},
+	toneYes:function(){
+		var myTones=[{freq:880,duration:.5},{freq:1220,duration:1},{freq:2440,duration:1.5}];
+		for(var i=0,len=myTones.length;i<len;i+=1){
+			var context = new (window.AudioContext || window.webkitAudioContext)();
+			var osc = context.createOscillator(); // instantiate an oscillator
+			osc.type = 'triangle'; // this is the default - also square, sawtooth, triangle
+			osc.frequency.value = myTones[i].freq; // Hz
+			var vol = context.createGain();
+			osc.connect(vol);
+			vol.connect(context.destination);
+			osc.connect(context.destination); // connect it to the destination
+			vol.gain.value = 0.1; // from 0 to 1, 1 full volume, 0 is muted
+			osc.start(); // start the oscillator
+			osc.stop(context.currentTime + myTones[i].duration);
+		}
+	},	
+	toneNo:function(){
+		var context = new (window.AudioContext || window.webkitAudioContext)();
+		var osc = context.createOscillator(); // instantiate an oscillator
+		osc.type = 'sine'; // this is the default - also square, sawtooth, triangle
+		osc.frequency.value = 220; // Hz
+		var vol = context.createGain();
+		vol.gain.value = 0.1; // from 0 to 1, 1 full volume, 0 is muted
+		osc.connect(vol)		
+		osc.connect(context.destination); // connect it to the destination
+		osc.start(); // start the oscillator
+		osc.stop(context.currentTime + 1);
+	},
+	loginComboPicks:[],
+	loginComboLength:4,
+	loginComboStep1LastVal:-1,
+	loginComboStep1:function(){
+		this.loginComboPicks=[];
+		var numArray='', i, len, futbolDiv=document.getElementById("futbol"), max=24;
+		for(i=0,len=max;i<=len;i+=1){
+			numArray+='<li class="teamValues'+(i===14?' lvp':'')+'" data-val="'+i+'"></li>';
+		}
+		var wrapper=['',
+		'<div id="combos">',
+			'<div class="team-wrapper">',
+				//'<ol class="team">',
+					numArray,
+				//'</ol>',
+			'</div>',
+		'</div>',
+		''].join('');	
+		futbolDiv.innerHTML=wrapper;
+		$opt.addEvent(document.getElementById("futbol"),"click",function(evt){
+			var evtX=(evt["srcElement"]?evt["srcElement"]:evt["target"]);
+			//console.log("click  "+evt+", and this is a "+evtX.tagName+" with data value of:"+evtX.getAttribute('data-val'));//.innerHTML);//['data-val']);
+			var value=evtX.getAttribute('data-val');
+			//alert(value);
+			if($opt.loginComboStep1LastVal===value)return;//for double click issues
+			$opt.loginComboPicks.push(value);
+			$opt.loginComboStep1LastVal=value;
+			evtX.className='picked';
+			if($opt.loginComboPicks.length>=$opt.loginComboLength)$opt.getUserList();			
+		});		
+	},
+	successUser:function(user){
+		var footballDiv=document.getElementById("football"), futbolDiv=document.getElementById("futbol"), found=false;
+		futbolDiv.style.display='none';
+		footballDiv.style.display='none';	
+		//found=this.user(user);
+		found=this.userParsing(user);
+	},
+	futbolMatch:'',
+	loginComboStep2LastVal:-1,
+	loginComboStep2:function(user){
+		this.loginComboPicks=[];
+		if(this.futbolMatch===user){
+			this.successUser(user)
+			return;
+		}
+		if(user!==false && !!!this.futbolMatch)this.futbolMatch=user;
+		var numArray='', i, len, footballDiv=document.getElementById("football"), futbolDiv=document.getElementById("futbol"), max=32;
+		for(i=0,len=max;i<=len;i+=1){
+			numArray+='<li class="teamValues" data-val="'+i+'"></li>';
+		}
+		var wrapper=['',
+		'<div id="combos">',
+			'<div class="team-wrapper">',
+				//'<ol class="team">',
+					numArray,
+				//'</ol>',
+			'</div>',
+		'</div>',
+		''].join('');	
+		footballDiv.innerHTML=wrapper;
+		futbolDiv.style.display='none';
+		footballDiv.style.display='block';
+		$opt.addEvent(document.getElementById("football"),"click",function(evt){
+			var evtX=(evt["srcElement"]?evt["srcElement"]:evt["target"]);
+			//console.log("click  "+evt+", and this is a "+evtX.tagName+" with data value of:"+evtX.getAttribute('data-val'));//.innerHTML);//['data-val']);
+			var value=evtX.getAttribute('data-val');
+			//alert(value);
+			if($opt.loginComboStep2LastVal===value)return;//for double click issues			
+			$opt.loginComboPicks.push(value);
+			$opt.loginComboStep2LastVal=value;			
+			evtX.className='picked';
+			if($opt.loginComboPicks.length>=$opt.loginComboLength)$opt.getUserList();			
+		});		
+	
+	}
+}
+
+var newProblemDiv=function(init){
+	if($opt.lastOperation==='div')return;
+	//if(init && $opt.tried!==0){
+	if((init===true && $opt.tried!==0) || $opt.tried >= $opt.maxProblems){
+		frm=document.getElementById("testData");
+		document.getElementById("name").value=$opt.name;
+		document.getElementById("operation").value=$opt.lastOperation;
+		document.getElementById("correct").value=$opt.correct;
+		document.getElementById("incorrect").value=$opt.incorrect;	
+		document.getElementById("tried").value=$opt.incorrect+$opt.correct;	
+		document.getElementById("nextOperation").value='div';	
+
+		$opt.correct=$opt.incorrect=$opt.tried=0;
+		frm.submit();
+		//return;
+	}	
+	if(init===true && $opt.tried===0){
+		$opt.operationKEY=$opt.generateKEY();
+	}		
+	$opt.tried+=1;
+	$opt.lastOperation='div';
+	$opt.tabulateOperation='div';	
+	$opt.showOperationChoices();
+	$opt.digits=[];
+	var max=20, min=3, total, topDiv=document.getElementById("top"), botDiv=document.getElementById("bot"), operand="\u00f7",
+	totalDiv=document.getElementById("total"), answersDiv=document.getElementById("answers"), multDiv=document.getElementById("MultDiv"),
+	operandDiv=document.getElementById("botSpacer");
+	var topNum=Math.floor(Math.random() * Math.floor(max-min))+min, 
+	botNum=Math.floor(Math.random() * Math.floor(max-min))+min;		
+	//var topNum=Math.floor(Math.random() * Math.floor(max-1))+1,
+	//botNum=Math.floor(Math.random() * Math.floor(max-1))+1;
+	
+	topDiv.innerHTML=topNum*botNum,
+	botDiv.innerHTML=botNum,
+	operandDiv.innerHTML=operand;
+	totalDiv.innerHTML=topNum;
+	$opt.total=topNum*botNum;
+	$opt.divisor=topNum;
+	$opt.currentProblem=''+$opt.total+'-'+botNum+'-'+topNum+'_';	
+	totalDiv.className="hide";
+	multDiv.className="show";
+	var numArray='', i, len;
+	for(i=0,len=9;i<=len;i+=1){
+		numArray+='<li class="numberValues" data-val="'+i+'">'+i+'</li>';
+	}
+	var wrapper=['',
+	'<div id="answersDIV">',
+		'<div class="number-wrapper">',
+			'<ul class="number">',
+				numArray,
+			'</ul>',
+			'<ul class="number">',
+				'<li class="numberValues" data-val="bksp">\u232B</li>',
+				'<li class="numberValues" data-val="answer">\u2713</li>',
+			'</ul>',
+		'</div>',
+	'</div>',
+	''].join('');
+	multDiv.innerHTML='';
+	answersDiv.innerHTML=wrapper;
+	$opt.addEvent(document.getElementById("answersDIV"),"click",function(evt){
+		var evtX=(evt["srcElement"]?evt["srcElement"]:evt["target"]), tmp;
+		//console.log("click  "+evt+", and this is a "+evtX.tagName+" with data value of:"+evtX.getAttribute('data-val'));//.innerHTML);//['data-val']);
+		var value=evtX.getAttribute('data-val');
+		if(value===null)return;//Did not click exactly ona number, try again	
+		if(/\d/.test(value)){
+			$opt.digits.push(value);
+			document.getElementById("MultDiv").innerHTML=$opt.digits.join('');
+		}
+		else if(value==="bksp"){
+			$opt.digits.splice($opt.digits.length-1, 1);
+			document.getElementById("MultDiv").innerHTML=$opt.digits.join('');
+		}
+		else if(value==="answer"){
+			tmp=$opt.digits.join('');
+			if(tmp==$opt.divisor){
+				document.getElementById("answers").innerHTML='<div class="correct">'+$opt.divisor+'<br/>\u263A</div>';
+				$opt.lastOperation='init';
+				$opt.hideOperationChoices();			
+				setTimeout(newProblemDiv,1000);	
+				$opt.correctStreak+=1;
+				$opt.correct+=1;	
+				//newProblemDiv();
+			}
+			else{
+				document.getElementById("answers").innerHTML='<div class="incorrect">'+$opt.divisor+'<br/>\u2639</div>';
+				multDiv.className+=" wrong";
+				$opt.wrongProblems+=$opt.currentProblem;
+				$opt.lastOperation='init';
+				$opt.hideOperationChoices();			
+				setTimeout(newProblemDiv,1000);	
+				$opt.correctStreak=0;				
+				$opt.incorrect+=1;
+				//newProblemDiv();
+			}
+			$opt.tabulate();
+		}				
+	});
+	$opt.checkStreak()	
+}
+var newProblemMult=function(init){
+	if($opt.lastOperation==='mult')return;
+	//if(init && $opt.tried!==0){
+	if((init===true && $opt.tried!==0) || $opt.tried >= $opt.maxProblems){
+		frm=document.getElementById("testData");
+		document.getElementById("name").value=$opt.name;
+		document.getElementById("operation").value=$opt.lastOperation;
+		document.getElementById("correct").value=$opt.correct;
+		document.getElementById("incorrect").value=$opt.incorrect;	
+		document.getElementById("tried").value=$opt.incorrect+$opt.correct;	
+		document.getElementById("nextOperation").value='mult';	
+		$opt.correct=$opt.incorrect=$opt.tried=0;
+		frm.submit();
+		//return;
+	}	
+	if(init===true && $opt.tried===0){
+		$opt.operationKEY=$opt.generateKEY();
+	}		
+	$opt.tried+=1;	
+	$opt.lastOperation='mult';
+	$opt.tabulateOperation='mult';
+	$opt.showOperationChoices();
+	$opt.digits=[];
+	var max=20, min=3, total, topDiv=document.getElementById("top"), botDiv=document.getElementById("bot"), operand="&#x00d7;",
+	totalDiv=document.getElementById("total"), answersDiv=document.getElementById("answers"), multDiv=document.getElementById("MultDiv"),
+	operandDiv=document.getElementById("botSpacer");
+	var topNum=Math.floor(Math.random() * Math.floor(max-min))+min, tmp,
+	botNum=Math.floor(Math.random() * Math.floor(max-min))+min;		
+	//var topNum=Math.floor(Math.random() * Math.floor(max-1))+1, tmp,
+	//botNum=Math.floor(Math.random() * Math.floor(max-1))+1;
+	if(botNum>topNum){//Make sure smaller number is on bottom, way kids are taught
+		tmp=botNum;
+		botNum=topNum;
+		topNum=tmp;
+	}
+	topDiv.innerHTML=topNum,
+	botDiv.innerHTML=botNum,
+	operandDiv.innerHTML=operand;
+	totalDiv.innerHTML=topNum*botNum;
+	$opt.total=topNum*botNum;
+	$opt.currentProblem=''+topNum+'-'+botNum+'-'+$opt.total+'_';	
+	totalDiv.className="hide";
+	multDiv.className="show";
+	var numArray='', i, len;
+	for(i=0,len=9;i<=len;i+=1){
+		numArray+='<li class="numberValues" data-val="'+i+'">'+i+'</li>';
+	}
+	var wrapper=['',
+	'<div id="answersMULT">',
+		'<div class="number-wrapper">',
+			'<ul class="number">',
+				numArray,
+			'</ul>',
+			'<ul class="number">',
+				'<li class="numberValues" data-val="bksp">\u232B</li>',
+				'<li class="numberValues" data-val="answer">\u2713</li>',
+			'</ul>',
+		'</div>',
+	'</div>',
+	''].join('');
+	answersDiv.innerHTML=wrapper;
+	multDiv.innerHTML='';
+	$opt.addEvent(document.getElementById("answersMULT"),"click",function(evt){
+		var evtX=(evt["srcElement"]?evt["srcElement"]:evt["target"]), tmp;
+		//console.log("click  "+evt+", and this is a "+evtX.tagName+" with data value of:"+evtX.getAttribute('data-val'));//.innerHTML);//['data-val']);
+		var value=evtX.getAttribute('data-val');
+		if(value===null)return;//Did not click exactly ona number, try again
+		if(/\d/.test(value)){
+			$opt.digits.push(value);
+			document.getElementById("MultDiv").innerHTML=$opt.digits.join('');
+		}
+		else if(value==="bksp"){
+			$opt.digits.splice($opt.digits.length-1, 1);
+			document.getElementById("MultDiv").innerHTML=$opt.digits.join('');
+		}
+		else if(value==="answer"){
+			tmp=$opt.digits.join('');
+			if(tmp==$opt.total){
+				document.getElementById("answers").innerHTML='<div class="correct">'+$opt.total+'<br/>\u263A</div>';
+				$opt.lastOperation='init';
+				$opt.hideOperationChoices();			
+				setTimeout(newProblemMult,1000);			
+				$opt.correctStreak+=1;		
+				$opt.correct+=1;
+				//newProblemMult();				
+			}
+			else{
+				document.getElementById("answers").innerHTML='<div class="incorrect">'+$opt.total+'<br/>\u2639</div>';
+				multDiv.className+=" wrong";
+				$opt.lastOperation='init';
+				$opt.wrongProblems+=$opt.currentProblem;				
+				$opt.hideOperationChoices();			
+				setTimeout(newProblemMult,1000);		
+				$opt.correctStreak=0;				
+				$opt.incorrect+=1;					
+				//newProblemMult();				
+			}
+			$opt.tabulate();
+		}				
+	});
+	$opt.checkStreak()	
+}
+var newProblemAdd=function(init){
+	if($opt.lastOperation==='add')return;
+	//if(init && $opt.tried!==0){
+
+	if((init===true && $opt.tried!==0) || $opt.tried >= $opt.maxProblems){
+		frm=document.getElementById("testData");
+		document.getElementById("name").value=$opt.name;
+		document.getElementById("operation").value=$opt.lastOperation;
+		document.getElementById("correct").value=$opt.correct;
+		document.getElementById("incorrect").value=$opt.incorrect;
+		document.getElementById("tried").value=$opt.incorrect+$opt.correct;	
+		document.getElementById("nextOperation").value='add';	
+		$opt.correct=$opt.incorrect=$opt.tried=0;
+		frm.submit();
+		//return;
+	}	
+	if(init===true && $opt.tried===0){
+		$opt.operationKEY=$opt.generateKEY();
+	}	
+	$opt.tried+=1;
+	$opt.lastOperation='add';
+	$opt.tabulateOperation='add';		
+	$opt.showOperationChoices();
+	var max=11, min=2, total, topDiv=document.getElementById("top"), botDiv=document.getElementById("bot"), operand="+",
+	totalDiv=document.getElementById("total"), answersDiv=document.getElementById("answers"),
+	operandDiv=document.getElementById("botSpacer");
+	var topNum=Math.floor(Math.random() * Math.floor(max-min))+min,
+	botNum=Math.floor(Math.random() * Math.floor(max-min))+min;
+	//var topNum=Math.floor(Math.random() * Math.floor(max-1))+1,
+	//botNum=Math.floor(Math.random() * Math.floor(max-1))+1;
+	topDiv.innerHTML=topNum,
+	botDiv.innerHTML=botNum,
+	operandDiv.innerHTML=operand;
+	totalDiv.innerHTML=topNum+botNum;
+	$opt.total=topNum+botNum;
+	$opt.currentProblem=''+topNum+'-'+botNum+'-'+$opt.total+'_';	
+	totalDiv.className="hidden";
+	var numArray='', i, len;
+	for(i=2,len=(max-1)*2;i<=len;i+=1){
+		numArray+='<li class="numberValues" data-val="'+i+'">'+i+'</li>';
+	}
+	var wrapper=['',
+	'<div id="answersADD">',
+		'<div class="number-wrapper">',
+			'<ul class="number">',
+				numArray,
+
+			'</ul>',
+		'</div>',
+	'</div>',
+	''].join('');
+	answersDiv.innerHTML=wrapper;
+	$opt.addEvent(document.getElementById("answersADD"),"click",function(evt){
+		var evtX=(evt["srcElement"]?evt["srcElement"]:evt["target"]);
+		//console.log("click  "+evt+", and this is a "+evtX.tagName+" with data value of:"+evtX.getAttribute('data-val'));//.innerHTML);//['data-val']);
+		var value=evtX.getAttribute('data-val');
+		if(value===null)return;//Did not click exactly ona number, try again		
+		if(value==$opt.total){
+			document.getElementById("total").className="";
+			//$opt.toneYes();
+			if(evtX.className.indexOf(" blue")===-1)evtX.className+=" blue";
+			document.getElementById("answers").innerHTML='<div class="correct">'+value+'<br/>\u263A</div>';
+			$opt.lastOperation='init';
+			$opt.hideOperationChoices();			
+			setTimeout(newProblemAdd,750);
+			$opt.correctStreak+=1;				
+			$opt.correct+=1;	
+			//newProblemAdd();				
+		}
+		else{
+			//$opt.tone(440,1);
+			//$opt.toneNo();
+			if(evtX.className.indexOf(" red")===-1)evtX.className+=" red";
+			evtX.innerHTML='\u2639';
+			$opt.wrongProblems+=$opt.currentProblem;
+			$opt.correctStreak=0;	
+			$opt.incorrect+=1;				
+		}
+		$opt.tabulate();
+		//console.log(value+'=='+$opt.total);	
+	});
+	$opt.checkStreak()
+}
+var newProblemSub=function(init){
+	if($opt.lastOperation==='sub')return;
+	//if(init && $opt.tried!==0){
+	if((init===true && $opt.tried!==0) || $opt.tried >= $opt.maxProblems){
+		frm=document.getElementById("testData");
+		document.getElementById("name").value=$opt.name;
+		document.getElementById("operation").value=$opt.lastOperation;
+		document.getElementById("correct").value=$opt.correct;
+		document.getElementById("incorrect").value=$opt.incorrect;	
+		document.getElementById("tried").value=$opt.incorrect+$opt.correct;	
+		document.getElementById("nextOperation").value='sub';	
+		$opt.correct=$opt.incorrect=$opt.tried=0;
+		frm.submit();
+		//return;
+	}	
+	if(init===true && $opt.tried===0){
+		$opt.operationKEY=$opt.generateKEY();
+	}		
+	$opt.tried+=1;	
+	$opt.lastOperation='sub';
+	$opt.tabulateOperation='sub';		
+	$opt.showOperationChoices();	
+	var max=20, min=2, total, topDiv=document.getElementById("top"), botDiv=document.getElementById("bot"), operand="&#x2212;",
+	totalDiv=document.getElementById("total"), answersDiv=document.getElementById("answers"), tmp,
+	operandDiv=document.getElementById("botSpacer");
+	var topNum=Math.floor(Math.random() * Math.floor(max-min))+min,
+	botNum=Math.floor(Math.random() * Math.floor(max-min))+min;	
+	//var topNum=Math.floor(Math.random() * Math.floor(max-1))+1,
+	//botNum=Math.floor(Math.random() * Math.floor(max-1))+1;
+	if(topNum<botNum){
+		tmp=topNum;
+		topNum=botNum,botNum=tmp;
+	}
+	topDiv.innerHTML=topNum,
+	botDiv.innerHTML=botNum,
+	operandDiv.innerHTML=operand;
+	totalDiv.innerHTML=topNum-botNum;
+	$opt.total=topNum-botNum;
+	totalDiv.className="hidden";
+	$opt.currentProblem=''+topNum+'-'+botNum+'-'+$opt.total+'_';
+	var numArray='', i, len;
+	for(i=0,len=max-1;i<=len;i+=1){
+		numArray+='<li class="numberValues" data-val="'+i+'">'+i+'</li>';
+	}
+	var wrapper=['',
+	'<div id="answersSUB">',
+		'<div class="number-wrapper">',
+			'<ul class="number">',
+				numArray,
+
+			'</ul>',
+		'</div>',
+	'</div>',
+	''].join('');
+	answersDiv.innerHTML=wrapper;
+	$opt.addEvent(document.getElementById("answersSUB"),"click",function(evt){
+		var evtX=(evt["srcElement"]?evt["srcElement"]:evt["target"]);
+		//console.log("click  "+evt+", and this is a "+evtX.tagName+" with data value of:"+evtX.getAttribute('data-val'));//.innerHTML);//['data-val']);
+		var value=evtX.getAttribute('data-val');
+		if(value===null)return;//Did not click exactly ona number, try again		
+		if(value==$opt.total){
+			document.getElementById("total").className="";
+			//$opt.toneYes();
+			if(evtX.className.indexOf(" blue")===-1)evtX.className+=" blue";
+			document.getElementById("answers").innerHTML='<div class="correct">'+value+'<br/>\u263A</div>';
+			$opt.lastOperation='init';
+			$opt.hideOperationChoices();
+			setTimeout(newProblemSub,750);
+			$opt.correctStreak+=1;				
+			$opt.correct+=1;	
+			//newProblemSub();				
+
+		}
+		else{
+			//$opt.tone(440,1);
+			//$opt.toneNo();
+			if(evtX.className.indexOf(" red")===-1)evtX.className+=" red";
+			evtX.innerHTML='\u2639';
+			$opt.wrongProblems+=$opt.currentProblem;
+			$opt.correctStreak=0;	
+			$opt.incorrect+=1;			
+		}
+		$opt.tabulate();
+		//console.log(value+'=='+$opt.total);
+		
+	});
+	$opt.checkStreak()
+}
+var myImg=new Image();
+myImg.src="celebration.gif";
+</script>
+<style>
+.equation{
+	float:left;
+	width:250px;
+}
+#answers{
+	float:left;
+	width:600px;
+}
+#top, #bot{
+	width:150px;
+	text-align:right;	
+}
+.equation{
+	font-size:120px;
+}
+.equation hr{
+	border:9px solid;
+}
+.card{
+	margin-left:100px;
+	display:block;
+}
+.hidden{
+	visibility:hidden;
+}
+.again{
+	clear:both;padding-left:150px;
+}
+.again button{
+	font-size:40px;
+}
+#total{
+	text-align:right;
+	padding-right:30px
+}
+.red{
+	background-color:#fff !important;
+	color:#c00 !important;
+}
+.blue{
+	background-color:#0066ff !important;
+	color:#fff !important;
+}
+.incorrect{
+	font-size: 200px;
+	line-height: 180px;	
+    text-align: center;
+    width: 300px;
+    margin: auto;
+	background-color:#c00;
+	color:#fff;
+}
+.correct{
+	font-size: 200px;
+	line-height: 180px;	
+    text-align: center;
+    width: 300px;
+    margin: auto;
+	background-color:#0066ff;
+	color:#fff;
+}
+.equationContainer {
+	white-space:nowrap;
+}
+
+.equationContainer div{
+	display:inline-block;
+	white-space:nowrap;
+}
+.operation div{
+	font-weight:bold;
+	display:inline-block;
+	white-space:nowrap;	
+}
+.operation {
+	padding-left:90px;
+}
+.operation div{
+	font-size:40px;
+	margin:5px 30px;
+}
+#topSpacer, #botSpacer{
+	width:50px;
+}
+hr{
+	margin:0;
+}
+.number-wrapper {
+    display: block;
+    padding: 5px 10px; 
+    text-align: center;
+}
+.numberValues {
+    display: inline-block;
+    width: 2.0em;
+    height: 2.0em;
+    line-height: 2.0em;
+    font-size: 2.5em;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin: 3px 3px;
+    background: #ddd;
+    color: #333;
+    cursor: pointer;
+    box-sizing: content-box;
+}
+	/************************** HIDING AGAIN BUTTON FOR NOW ****************/
+.again, .hide, #MultDiv{display:none;}	
+    input[type=radio] {
+    border: 0px;
+    width: 50px;
+    height: 2em;
+}
+.show{
+	display:block !important;
+}
+#MultDiv{
+	text-align:right;
+}
+.wrong{
+	text-decoration:line-through;
+}
+#celebration{
+	display:none;
+	position:fixed;
+	z-index:5000;
+	background-image:url(celebration.gif);
+	background-repeat:no-repeat;
+	background-size:100%;
+	height:100%;
+	width:100%;
+
+}
+#celebration img{
+	width:100%;
+
+}
+#celebration div{
+	font-size:70px;
+	color:#0f8;
+	_text-align:center;
+	_width:100%;
+}
+.messages{display:none;}
+#initial{
+	position:fixed;
+	z-index:6000;
+	background-color:#fff;
+	height:100%;
+	width:100%;
+}
+#initial div{
+	font-size:70px;
+	color:#000;
+	_text-align:center;
+	_width:100%;
+}
+.operationArea{
+	_float:left;
+}
+#results{
+    position: fixed;
+    background: #fff;
+    z-index: 999;
+    margin: 0 200px;
+    left: 350px;
+	top:0px;
+	min-height:500px;
+	display:none;
+}
+#results td{
+	border:2px solid black;
+	margin:5px;
+	padding: 5px;
+
+}
+#results th{
+	border:2px solid black;
+	margin:5px;
+	padding: 5px;
+
+}
+#currentResult th{
+	text-align:center;
+	border:1px solid black;
+
+}
+#currentResult td{
+	text-align:center;
+	border:1px solid black;
+	color:blue;
+}
+#futbol{
+	background-image:url(/assets/img/boys/pl.18.19.jpeg);
+	_background-image:url(/assets/img/boys/eu-32-sprite.png);
+    background-position: -70px -160px;
+    background-repeat: no-repeat;
+    height: 315px;
+    width: 700px;
+    _padding-left: 25px;
+}
+#futbol .team-wrapper  li{
+	width:100px;
+	height:105px;
+	display:inline-block;
+	font-size:8px;
+	list-style:none;
+	
+}
+#futbol .team-wrapper  li.picked{
+	background:#900;
+}
+#futbol .team-wrapper ul{
+    margin: 0px;
+    margin-block-start: 0px;
+    padding-inline-start: 0px;
+}
+#futbol .team-wrapper .teamValues {
+    cursor: pointer;
+}
+#futbol .team-wrapper .lvp{
+	background-image:url(/assets/img/boys/liverpool.png);
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: 17px;	
+}
+#football{
+	display:none;
+	background-image:url(/assets/img/boys/nfl.jpg);
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    background-size: 100%;	
+    height: 555px;
+    width: 700px;
+    _padding-left: 25px;	
+}
+#football .team-wrapper  li{
+    width: 14.28%;
+    height: 18%;
+	display:inline-block;
+	font-size:8px;
+	list-style:none;
+	
+}
+#football .team-wrapper  li.picked{
+	background:#000;
+}
+#football .team-wrapper ul{
+    margin: 0px;
+    margin-block-start: 0px;
+    padding-inline-start: 0px;
+}
+#football .team-wrapper .teamValues {
+    cursor: pointer;
+}
+.welcome{
+    font-size: 40px;
+    padding-left: 120px;
+}
+</style>
+
+</head>
+<!--<body onload="newProblemAdd(true)">-->
+<body>
+<div id="initial">
+	<!--<div>Who are you?</div>-->
+	<div id="futbol">
+		
+	</div>
+	<div id="football">
+		
+	</div>	<!--
+	<button onclick="$opt.user('Johnny');">Johnny</button>
+	<button onclick="$opt.user('Markie');">Markie</button>
+	-->
+</div>
+<div id="currentResult">
+</div>
+<div id="celebration">
+	<!-- <img src="celebration.gif" /> -->
+	<div>YOU GOT <span id="streakLength">6</span> STRAIGHT!!!</DIV>
+</div>
+<div class="operation">
+	<div id="adding" class="forMarc">+<input type="radio" name="operation" value="add" onclick="newProblemAdd(true)" ></div>
+	<div id="subtract" class="forMarc">&#x2212;<input type="radio" name="operation" value="sub" onclick="newProblemSub(true)" ></div>
+	<div id="multiply" class="forJohnny">&#x00d7;<input type="radio" name="operation" value="mult" onclick="newProblemMult(true)" ></div>
+	<div id="divide" class="forJohnny">&#x00f7;<input type="radio" name="operation" value="div" onclick="newProblemDiv(true)"></div>
+	<div class="operationArea"><button onclick="$opt.getResults(true)">Show Results</button></div>
+	<div class="operationArea">
+		<div id="results">
+		</div>
+	</div>
+</div>
+<div class="card">
+	<div class="equation">
+		<div class="equationContainer">
+			<div id="topSpacer">&nbsp;</div>
+			<div id="top"></div>
+		</div>
+		<div class="equationContainer">		
+			<div id="botSpacer"></div>
+			<div id="bot"></div>
+		</div>		
+		<hr/>
+		<div id="total"></div>
+		<div id="MultDiv"></div>	
+	</div>
+	<div id="answers">
+
+	</div>
+</div>
+<div id="return"></div>
+<div class="again">
+	<button onclick="newProblemAdd()" type="button">Again</button>
+</div>
+<form method="get" action="" id="testData" onsubmit="return false;">
+	<input type="hidden" name="name" id="name" value=""/>
+	<input type="hidden" name="operation" id="operation" value=""/>
+	<input type="hidden" name="correct" id="correct" value=""/>
+	<input type="hidden" name="incorrect" id="incorrect" value=""/>
+	<input type="hidden" name="tried" id="tried" value=""/>
+	<input type="hidden" name="nextOperation" id="nextOperation" value=""/>
+</form>
+<div class="messages">
+
+
+
+</div>
+<script>
+$opt.loginComboStep1();
+</script>
+
+</body>
+</html>

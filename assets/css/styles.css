@@ -4,10 +4,273 @@ bodyXYZ{
     background-repeat: no-repeat;
     background-position: 50% 0;
 }
+.matched{
+	font-weight:bold;
+	text-decoration:underline;
+}
 .gallery img{width:200px}
+.mainBkg{
+	background: url(/assets/img/jayuya.jpg) no-repeat #fff;
+	opacity:.15;	
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+}
+.pac-container {
+  height: 150px;
+  overflow-y: scroll;
+}
+.angucomplete-results hr{
+	margin:0px;
+	padding:0px;
+}
+.angucomplete-results div.angucomplete-row{
+	display:inline-block;
+	border-bottom:1px solid #cccccc;
+	padding:2px 5px;	
+}
+.angucomplete-results a.angucomplete-row {
+    width: auro;
+    display: inline-block;
+	border:1px solid #eeeeee;
+}
+.angucomplete-result{
+    display: inline-block;
+    border: 1px solid #cccccc;
+    width: auto;
+}
+.angucomplete-dropdown{
+    display: inline-block;
+    border: 1px solid #cccccc;	
+    width: auto;	
+}
 
+a.autoFocus{
+	background-color:#DDDDDD;
+}
+a.autoBlur{
+	background-color:#ffffff;
+}
 .gallery tbody td{border-top:1px solid black;margin:3px;}
 .gallery tbody td.galleryLabel{   vertical-align: top;}
 
 .gallery  div.picContainer{float:left; margin:3px}
 .galleryList{float:left; border:3px solid #003366;margin: 3px;}
+.teamScheduleView .galleryList{border:none;}
+.listArea .galleryList{float:none; border:none;text-align: center;}
+.galleryList select{margin: 0 0 10px 0;}
+table.gallery{
+	border:3px solid #003366;
+	margin: 3px;
+	margin: auto;
+}
+.teamSelectView{text-align:center;}
+.teamsContainer{border:1px solid blue;padding:5px;}
+.teamsContainer div{text-align:center;}
+.teamsContainer .entity{color:#000088;font-weight:bold;}
+.teamsContainer .team{color:#009933;font-weight:bold;}
+.listArea hr{border:1px;width:100%;display:block;}
+.noMatches{
+	color:#000066;
+	ont-size:18px;
+	font-weight:bold;
+	border:1px dotted #eec0ee;
+	background:#FFD0FF;
+	padding: 10px;
+	display:inline-block;
+	margin-top: 10px;
+}
+.myTeam{
+	font-weight: bold;
+	margin:4px;
+	text-decoration:underline;	
+}
+.se-pre-con {
+	position: fixed;
+	__left: 20%;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(/assets/img/Preloader_8.gif) 150px 150px no-repeat #fff;
+	background-size:400px 400px;
+}
+.nhl{
+	position:absolute;
+	opacity:.12;
+	height:100%;
+	width:800px;
+	background: url(//www-league.nhlstatic.com/builds/site-core/505a6f127dcc403fdad1e629840e9058ca0f1e88_1506980076/images/footer/shield_dark_en.svg) center no-repeat #fff;
+	_background: url(//upload.wikimedia.org/wikipedia/en/thumb/e/e4/NHL_Logo_former.svg/996px-NHL_Logo_former.svg.png) center no-repeat #fff;
+}
+.nfl{
+	position:absolute;
+	opacity:.12;
+	height:100%;
+	width:800px;
+	background: url(//static.nfl.com/static/content/public/static/wildcat/assets/img/application-shell/shield/default.svg) top center no-repeat #fff;
+	background-size:600px 600px;
+}
+.nba{
+	position:absolute;
+	opacity:.12;
+	height:100%;
+	width:800px;
+	background: url(//www.vectorfans.com/wp-content/uploads/2013/08/NBA-Logo-Vector.jpg) top center no-repeat #fff;
+}
+.mlb{
+	position:absolute;
+	opacity:.12;
+	height:100%;
+	width:800px;
+	background: url(//www.seeklogo.net/wp-content/uploads/2014/11/mlb-Major-League-Baseball-logo.png)no-repeat #fff;
+	background-position: 100px -150px;
+}
+
+/*   Progress Bar info || Progress Bar info || Progress Bar info */
+.step-progress-bar {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    display: table;
+    width: 100%;
+    position: relative;
+}
+
+.step-progress-bar li:first-child {
+    padding-left: 0;
+}
+
+.step-progress-bar li.processed {
+    cursor: pointer;
+}
+
+.step-progress-bar li {
+    display: table-cell;
+    width: 25%;
+    padding: 0;
+    padding-left: 8px;
+    vertical-align: bottom;
+    height: 30px;
+}
+
+.step-progress-bar li.processed .progressbarcont {
+    cursor: pointer;
+}
+
+.step-progress-bar .progressbarcont {
+    border-bottom: 4px solid #ccc;
+    _height: 34px;
+    float: left;
+    width: 100%;
+}.step-progress-bar li.active .progressbarcont .step-title, .step-progress-bar li.active .progressbarcont .step-number {
+    _color: #d4002a;
+    color: #0066ee;
+}
+
+.step-progress-bar li.active .step-text .step-title {
+    animation: scaleUps .9s both ease-in-out;
+}
+
+.step-progress-bar li.active .progressbarcont {
+    _border-color: #d4002a;
+    border-color: #0066ee;
+}
+
+.step-progress-bar li.active .progressbarcont {
+    animation: raiseUp .3s both ease-in;
+}
+
+.step-progress-bar li.active .step-number, .step-progress-bar li.active .step-title {
+    display: block;
+    float: left;
+}
+.opponentSelect{
+	text-align:center;
+	width:100%;
+}
+
+.step-progress-bar li .step-title {
+    _display: none;
+    white-space: nowrap;
+    width: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 10px;
+    padding-top: 1px;
+    font-size: 1em;
+}
+
+li.processed .step-title {
+    _color: #b2b2b2;
+    color: #d2d2d2;
+    font-family: Custom-Demi,Arial,sans-serif;
+    padding-left: 5px;
+}
+.step-title {
+    _color: #b2b2b2;
+    color: #ffffff;
+    font-family: Custom-Demi,Arial,sans-serif;
+    padding-left: 5px;
+}
+.airportInfo, .teamsInfo, .teamSchedule{
+	width:500px;
+	display:none;
+}
+.opShow{
+	display:block;
+	color: #003399;
+	width: auto;
+	padding-left: 10px;
+	float: left;
+    text-decoration: none;
+    cursor: pointer;	
+	_background: url(/assets/img/info_icon.svg.png) 2px 0px no-repeat #fff;	
+	background: url(/assets/img/info-icon.png) 2px 0px no-repeat #fff;	
+	background-size:19px 19px;
+}
+.opHide{
+	display:none;
+	padding-left: 10px;
+	float: left;
+}
+
+.hideHover{
+	display:none;
+}
+.showArrow{
+	display: block;
+}
+.hideArrow{
+	display:none;
+}
+.showHover{
+	position: absolute;
+    width:200px;
+    background: #cccccc;
+   _border: 1px solid black;
+	border-radius:5px;
+    padding: 5px;
+    z-index: 1000;
+	display:inline-block;
+	top: 40px;
+    margin-left: -102px;	
+}
+.opT3Triangle{
+	text-align: center;
+	border-left: 15px solid transparent;
+	border-right: 15px solid transparent;
+	_bottom: -5rem;
+	_top: -20px;	
+	height: 0px;
+	_margin: 0 auto 10px auto;
+	margin-left:-11px;
+	position: absolute;
+	width: 0;
+	border-bottom: 15px solid #cccccc;
+	_top: -1px;
+	_display: block;
+}
